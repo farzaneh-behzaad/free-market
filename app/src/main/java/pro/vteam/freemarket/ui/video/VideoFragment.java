@@ -1,4 +1,4 @@
-package pro.vteam.freemarket.ui.dashboard;
+package pro.vteam.freemarket.ui.video;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,17 +14,17 @@ import androidx.lifecycle.ViewModelProviders;
 
 import pro.vteam.freemarket.R;
 
-public class DashboardFragment extends Fragment {
+public class VideoFragment extends Fragment {
 
-    private DashboardViewModel dashboardViewModel;
+    private VideoViewModel videoViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        dashboardViewModel =
-                ViewModelProviders.of(this).get(DashboardViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-        final TextView textView = root.findViewById(R.id.text_dashboard);
-        dashboardViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
+        videoViewModel =
+                ViewModelProviders.of(this).get(VideoViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_video, container, false);
+        final TextView textView = root.findViewById(R.id.text_video);
+        videoViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>() {
             @Override
             public void onChanged(@Nullable String s) {
                 textView.setText(s);

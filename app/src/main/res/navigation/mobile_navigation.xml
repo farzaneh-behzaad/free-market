@@ -5,21 +5,33 @@
     android:id="@+id/mobile_navigation"
     app:startDestination="@+id/navigation_home">
 
+
+    <fragment
+        android:id="@+id/navigation_myMarket"
+        android:name="pro.vteam.freemarket.ui.myMarket.MyMarketFragment"
+        android:label="@string/my_market"
+        tools:layout="@layout/fragment_my_market" />
+    <fragment
+        android:id="@+id/navigation_search"
+        android:name="pro.vteam.freemarket.ui.search.SearchFragment"
+        android:label="@string/search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/navigation_categories"
+        android:name="pro.vteam.freemarket.ui.categories.CategoriesFragment"
+        android:label="@string/categories"
+        tools:layout="@layout/fragment_categories" />
+
+    <fragment
+        android:id="@+id/navigation_video"
+        android:name="pro.vteam.freemarket.ui.video.VideoFragment"
+        android:label="@string/video"
+        tools:layout="@layout/fragment_video" />
     <fragment
         android:id="@+id/navigation_home"
         android:name="pro.vteam.freemarket.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:label="@string/home"
         tools:layout="@layout/fragment_home" />
 
-    <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="pro.vteam.freemarket.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
 
-    <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="pro.vteam.freemarket.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
 </navigation>
