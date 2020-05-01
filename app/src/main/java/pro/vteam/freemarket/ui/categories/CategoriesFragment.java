@@ -53,12 +53,6 @@ public class CategoriesFragment extends Fragment {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                int tabPosition = tab.getPosition();
-                if (tabPosition == 0) {
-                    tab.setText(getResources().getString(R.string.games));
-                } else {
-                    tab.setText(getResources().getString(R.string.programs));
-                }
                 viewPager.setCurrentItem(tab.getPosition());
 
 
