@@ -1,8 +1,24 @@
+<!--<resources>-->
+<!--    <string name="app_name">Free Market</string>-->
+<!--    <string name="home">home</string>-->
+<!--    <string name="categories"> categories</string>-->
+<!--    <string name="video">video</string>-->
+<!--    <string name="search">search</string>-->
+<!--    <string name="my_market"> my_market</string>-->
+<!--    <string name="subject">subject</string>-->
+<!--    <string name="games"> games</string>-->
+<!--    <string name="programs"> programs</string>-->
+<!--</resources>-->
+
+
 <resources>
-    <string name="app_name">Free Market</string>
-    <string name="home">خانه</string>
-    <string name="categories">دسته ها</string>
-    <string name="video">ویدیو</string>
-    <string name="search">جستجو</string>
-    <string name="my_market">بازار من</string>
+<string name="app_name">Free Market</string>
+<string name="home">خانه</string>
+<string name="categories">دسته ها</string>
+<string name="video">ویدیو</string>
+<string name="search">جستجو</string>
+<string name="my_market">بازار من</string>
+<string name="subject">عنوان</string>
+<string name="games">بازی ها</string>
+<string name="programs">برنامه ها</string>
 </resources>
