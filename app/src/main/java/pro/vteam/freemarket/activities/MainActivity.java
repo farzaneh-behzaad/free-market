@@ -36,7 +36,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_myMarket, R.id.navigation_search, R.id.navigation_categories,R.id.navigation_categories,R.id.navigation_video,  R.id.navigation_home)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
-      //  NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
+      // NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
     }
 

@@ -21,15 +21,17 @@ public class CategoriesTabViewModel extends ViewModel {
         return lists;
     }
 
+
+
     private ArrayList<CategoriesListModel> modifyLists() {
         ArrayList<CategoriesItemsModel> programsList = new ArrayList<>();
-        for (int i = 1; i <= 10; i++) {
+        for (int i = 1; i <= 50; i++) {
             CategoriesItemsModel object = new CategoriesItemsModel("برنامه " + i, "@drawable/ic_edit_black_24dp");
             programsList.add(object);
         }
 
         ArrayList<CategoriesItemsModel> gamesList = new ArrayList<>();
-        for (int i = 1; i <= 30; i++) {
+        for (int i = 1; i <= 40; i++) {
             CategoriesItemsModel object = new CategoriesItemsModel("بازی " + i, "@drawable/ic_edit_black_24dp");
             gamesList.add(object);
         }
