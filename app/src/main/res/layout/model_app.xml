@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:id="@+id/root"
+    android:padding="8dp"
+   >
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/appIcon"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_gravity="center"
+        android:layout_margin="8dp"
+        android:src="@drawable/ic_android_black_24dp"
+        android:tint="@color/colorAccent"
+        />
+
+    <TextView
+        android:id="@+id/appName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/app_name_"
+        android:layout_gravity="start"
+        android:layout_margin="8dp"
+        android:textColor="#000000"
+
+        />
+
+    <TextView
+        android:id="@+id/appCost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/cost"
+        android:layout_gravity="start"
+        android:layout_margin="8dp"
+        />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

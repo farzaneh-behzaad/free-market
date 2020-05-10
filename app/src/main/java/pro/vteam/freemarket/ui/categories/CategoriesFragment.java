@@ -17,8 +17,7 @@ import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.adapter.CategoriesPagerAdapter;
-import pro.vteam.freemarket.models.CategoriesItemsModel;
-import pro.vteam.freemarket.models.CategoriesListModel;
+import pro.vteam.freemarket.models.CategoriesList;
 
 public class CategoriesFragment extends Fragment {
     TabLayout tabLayout;
@@ -35,16 +34,16 @@ public class CategoriesFragment extends Fragment {
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
 
-        CategoriesTabViewModel viewModel = ViewModelProviders.of(this).get(CategoriesTabViewModel.class);
-        viewModel.getObjectsList().observe(getViewLifecycleOwner(), new Observer<ArrayList<CategoriesListModel>>() {
-            @Override
-            public void onChanged(ArrayList<CategoriesListModel> categoriesListModels) {
-              CategoriesPagerAdapter adapter=new CategoriesPagerAdapter(getChildFragmentManager(),categoriesListModels);
-                viewPager.setAdapter(adapter);
-                tabLayout.getTabAt(1).select();
 
-            }
+
+        CategoriesTabViewModel viewModel = ViewModelProviders.of(this).get(CategoriesTabViewModel.class);
+
+        viewModel.getObjectsList().observe(getViewLifecycleOwner(), categoriesLists -> {
+          CategoriesPagerAdapter adapter=new CategoriesPagerAdapter(getChildFragmentManager(), categoriesLists);
+            viewPager.setAdapter(adapter);
+            tabLayout.getTabAt(1).select();
         });
+
 
 
 

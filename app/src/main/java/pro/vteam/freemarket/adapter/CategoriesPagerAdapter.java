@@ -6,14 +6,14 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-import pro.vteam.freemarket.models.CategoriesListModel;
+import pro.vteam.freemarket.models.CategoriesList;
 import pro.vteam.freemarket.fragments.ProgramsGamesFragment;
 
 public class CategoriesPagerAdapter extends FragmentPagerAdapter {
 
-    ArrayList<CategoriesListModel> listModels;
+    ArrayList<CategoriesList> listModels;
 
-    public CategoriesPagerAdapter(FragmentManager fm, ArrayList<CategoriesListModel> listModels) {
+    public CategoriesPagerAdapter(FragmentManager fm, ArrayList<CategoriesList> listModels) {
         super(fm);
         this.listModels = listModels;
     }
