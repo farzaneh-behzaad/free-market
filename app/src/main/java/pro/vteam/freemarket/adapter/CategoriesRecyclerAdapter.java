@@ -25,34 +25,43 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRe
     private CategoriesItemsListener categoriesItemsListener;
 
 
-    public CategoriesRecyclerAdapter(Context context,ArrayList<CategoriesListItems> itemsList){
-        this.context=context;
-        this.itemsList=itemsList;
+    public CategoriesRecyclerAdapter(Context context, ArrayList<CategoriesListItems> itemsList) {
+        this.context = context;
+        this.itemsList = itemsList;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view=LayoutInflater.from(parent.getContext()).inflate(R.layout.model_categories_programs_games,parent,false);
-        ViewHolder holder=new ViewHolder(view);
-        holder.txt_subject=view.findViewById(R.id.txt_subject);
-        holder.iconUrl=view.findViewById(R.id.img_icon);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.model_categories_programs_games, parent, false);
+        ViewHolder holder = new ViewHolder(view);
+        holder.txt_subject = view.findViewById(R.id.txt_subject);
+        holder.iconUrl = view.findViewById(R.id.img_icon);
+        holder.divider = view.findViewById(R.id.divider);
 
         return holder;
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+
+
         CategoriesListItems item = itemsList.get(position);
-        holder.txt_subject .setText(item.getTxt_subject());
+
+        if (position == itemsList.size() - 1) {
+            holder.divider.setVisibility(View.GONE);
+        }else {
+            holder.divider.setVisibility(View.VISIBLE);
+        }
+        holder.txt_subject.setText(item.getTxt_subject());
         Glide.with(context)
                 .load(item.getIconUrl())
                 .into(holder.iconUrl);
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (categoriesItemsListener!=null) {
+                if (categoriesItemsListener != null) {
                     categoriesItemsListener.onItemClick(position);
                 }
             }
@@ -65,23 +74,25 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRe
         return itemsList.size();
     }
 
-    class ViewHolder extends RecyclerView.ViewHolder{
+    class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView txt_subject;
         ImageView iconUrl;
         CardView cardView;
+        View divider;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            txt_subject=itemView.findViewById(R.id.txt_subject);
-            iconUrl=itemView.findViewById(R.id.img_icon);
-            cardView=itemView.findViewById(R.id.item_cardView);
+            txt_subject = itemView.findViewById(R.id.txt_subject);
+            iconUrl = itemView.findViewById(R.id.img_icon);
+            cardView = itemView.findViewById(R.id.item_cardView);
+            divider = itemView.findViewById(R.id.divider);
 
         }
     }
 
-    public void setCategoriesItemsListener(CategoriesItemsListener categoriesItemsListener){
-        this.categoriesItemsListener=categoriesItemsListener;
+    public void setCategoriesItemsListener(CategoriesItemsListener categoriesItemsListener) {
+        this.categoriesItemsListener = categoriesItemsListener;
     }
 
 

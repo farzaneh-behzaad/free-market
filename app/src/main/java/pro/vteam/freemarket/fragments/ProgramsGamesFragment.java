@@ -35,7 +35,6 @@ public class ProgramsGamesFragment extends Fragment {
 
         View rootView = inflater.inflate(R.layout.fragment_programs_games, container, false);
         RecyclerView recyclerView = rootView.findViewById(R.id.recycler);
-
         CategoriesRecyclerAdapter categoriesRecyclerAdapter = new CategoriesRecyclerAdapter(getContext(), list);
         categoriesRecyclerAdapter.setCategoriesItemsListener(new CategoriesItemsListener() {
             @Override

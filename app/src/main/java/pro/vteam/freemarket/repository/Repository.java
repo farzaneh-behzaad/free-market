@@ -18,11 +18,6 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class Repository {
 
-    public interface CategoryFetchListener{
-        void onSuccess(pro.vteam.freemarket.models.Response body);
-        void onFailed();
-    }
-
 
     public static void getCategoriesLists(MutableLiveData<ArrayList<CategoriesList>> liveData) {
         Retrofit retrofit = new Retrofit.Builder()
@@ -37,12 +32,15 @@ public class Repository {
         call.enqueue(new Callback<pro.vteam.freemarket.models.Response>() {
             @Override
             public void onResponse(Call<pro.vteam.freemarket.models.Response> call, Response<pro.vteam.freemarket.models.Response> response) {
+                Log.wtf("LOG","on success");
                 liveData.setValue(response.body().getResult().getCategoriesLists());
+
+
             }
 
             @Override
             public void onFailure(Call<pro.vteam.freemarket.models.Response> call, Throwable t) {
-                Log.i("LOG","failure");
+                Log.wtf("LOG","failure");
             }
         });
 
