@@ -23,4 +23,6 @@
     <string name="programs">برنامه ها</string>
     <string name="app_name_">نام اپلیکیشن</string>
     <string name="cost">هزینه</string>
+    <string name="no_connection">لطفا از اتصال دستگاه خود به اینترنت مطمعن شوید.</string>
+    <string name="try_again">تلاش دوباره</string>
 </resources>

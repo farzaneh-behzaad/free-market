@@ -4,11 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <import type="android.view.View" />
 
         <variable
             name="isLoading"
+            type="androidx.databinding.ObservableBoolean" />
+
+        <variable
+            name="isFailed"
             type="androidx.databinding.ObservableBoolean" />
     </data>
 
@@ -24,7 +27,7 @@
             android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:visibility="@{isLoading ==true ? View.GONE : View.VISIBLE}"
+            android:visibility="@{isLoading || isFailed? View.GONE : View.VISIBLE}"
             app:layout_constraintBottom_toTopOf="@id/view_pager"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -32,8 +35,8 @@
                 android:id="@+id/tab_layout"
                 android:layout_width="match_parent"
                 android:layout_height="64dp"
-                android:visibility="@{isLoading==true ? View.GONE : View.VISIBLE}"
-                app:tabSelectedTextColor="@color/teb_selector" />
+                app:tabSelectedTextColor="@color/teb_selector"
+                app:tabIndicatorColor="@color/colorAccent"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
@@ -50,11 +53,24 @@
             android:id="@+id/progress_circular"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:visibility="@{isLoading==true ? View.VISIBLE : View.GONE}"
+            android:visibility="@{isLoading ? View.VISIBLE : View.GONE }"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="@{isFailed ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <include layout="@layout/failed_internet" />
+        </LinearLayout>
+
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </layout>

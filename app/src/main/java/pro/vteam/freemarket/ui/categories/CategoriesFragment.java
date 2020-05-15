@@ -39,6 +39,7 @@ public class CategoriesFragment extends Fragment {
 
         CategoriesTabViewModel viewModel = ViewModelProviders.of(this).get(CategoriesTabViewModel.class);
         binding.setIsLoading(viewModel.isLoading);
+        binding.setIsFailed(viewModel.isFailed);
 
         viewModel.getObjectsList().observe(getViewLifecycleOwner(), categoriesLists -> {
             CategoriesPagerAdapter adapter = new CategoriesPagerAdapter(getChildFragmentManager(), categoriesLists);

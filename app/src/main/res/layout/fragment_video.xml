@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.video.VideoFragment">
 
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/text_video"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

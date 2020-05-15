@@ -20,4 +20,16 @@ public class Response {
     public Result getResult() {
         return result;
     }
+
+    public int getError() {
+        return error;
+    }
+
+    public int getStatusCode() {
+        return statusCode;
+    }
+
+    public String getServerDateTime() {
+        return serverDateTime;
+    }
 }

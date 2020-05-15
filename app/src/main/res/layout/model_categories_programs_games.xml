@@ -19,14 +19,14 @@
             android:orientation="horizontal"
             android:padding="16dp">
 
-            <ImageView
+            <androidx.appcompat.widget.AppCompatImageView
                 android:id="@+id/img_icon"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
                 android:layout_marginEnd="16dp"
                 android:src="@drawable/ic_edit_black_24dp" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txt_subject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

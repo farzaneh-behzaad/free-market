@@ -11,7 +11,7 @@ import pro.vteam.freemarket.fragments.ProgramsGamesFragment;
 
 public class CategoriesPagerAdapter extends FragmentPagerAdapter {
 
-    ArrayList<CategoriesList> listModels;
+    private ArrayList<CategoriesList> listModels;
 
     public CategoriesPagerAdapter(FragmentManager fm, ArrayList<CategoriesList> listModels) {
         super(fm);
