@@ -20,12 +20,24 @@ public class CategoriesTabViewModel extends ViewModel {
     private MutableLiveData<ArrayList<CategoriesList>> lists;
 
     public CategoriesTabViewModel() {
-        lists = new MutableLiveData<>();
-        Log.wtf("LOG_isFailed", isFailed.get() + "");
+        pullData();
+    }
+
+    MutableLiveData<ArrayList<CategoriesList>> getObjectsList() {
+        return lists;
+    }
+
+
+    public void pullData() {
+        if (lists == null) {
+            lists = new MutableLiveData<>();
+        }
+        isLoading.set(true);
+        isFailed.set(false);
+        isLoading.notifyChange();
+        isFailed.notifyChange();
 
         Repository.getCategoriesLists(new Repository.OnAccessListener() {
-
-
             @Override
             public void onAccess(ArrayList<CategoriesList> list) {
                 lists.setValue(list);
@@ -46,11 +58,6 @@ public class CategoriesTabViewModel extends ViewModel {
             }
         });
 
-
-    }
-
-    MutableLiveData<ArrayList<CategoriesList>> getObjectsList() {
-        return lists;
     }
 
 }

@@ -68,7 +68,9 @@
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <include layout="@layout/failed_internet" />
+            <include
+                android:id="@+id/included"
+                layout="@layout/failed_internet" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

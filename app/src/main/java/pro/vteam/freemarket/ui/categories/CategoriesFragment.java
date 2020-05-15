@@ -19,6 +19,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.adapter.CategoriesPagerAdapter;
+
 import pro.vteam.freemarket.databinding.FragmentCategoriesBinding;
 
 public class CategoriesFragment extends Fragment {
@@ -27,6 +28,7 @@ public class CategoriesFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
         FragmentCategoriesBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_categories, container, false);
+
         View root = binding.getRoot();
 
 
@@ -40,6 +42,8 @@ public class CategoriesFragment extends Fragment {
         CategoriesTabViewModel viewModel = ViewModelProviders.of(this).get(CategoriesTabViewModel.class);
         binding.setIsLoading(viewModel.isLoading);
         binding.setIsFailed(viewModel.isFailed);
+        binding.included.setListener(viewModel);
+
 
         viewModel.getObjectsList().observe(getViewLifecycleOwner(), categoriesLists -> {
             CategoriesPagerAdapter adapter = new CategoriesPagerAdapter(getChildFragmentManager(), categoriesLists);
