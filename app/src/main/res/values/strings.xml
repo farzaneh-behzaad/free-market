@@ -25,4 +25,15 @@
     <string name="cost">هزینه</string>
     <string name="no_connection">لطفا از اتصال دستگاه خود به اینترنت مطمعن شوید.</string>
     <string name="try_again">تلاش دوباره</string>
+    <string name="user_account">حساب کاربری</string>
+    <string name="Login">ورود</string>
+    <string name="updates">به روز رسانی ها</string>
+    <string name="installed">نصب شده ها</string>
+    <string name="security_of_market">سپر امنیت بازار</string>
+    <string name="recent_download">دانلودهای اخیر</string>
+    <string name="child_market">بازار کودک</string>
+    <string name="downloaded">دانلود شده ها</string>
+    <string name="played_history">تاریخچه پخش</string>
+    <string name="question">question</string>
+    <string name="setting">setting</string>
 </resources>

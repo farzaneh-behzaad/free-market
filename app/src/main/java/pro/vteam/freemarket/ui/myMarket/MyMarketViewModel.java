@@ -6,14 +6,25 @@ import androidx.lifecycle.ViewModel;
 
 public class MyMarketViewModel extends ViewModel {
 
-    private MutableLiveData<String> mText;
+    private MutableLiveData<String[]> tabs;
 
     public MyMarketViewModel() {
-        mText = new MutableLiveData<>();
-        mText.setValue("This is MyMarket fragment");
+        tabs=new MutableLiveData<>();
+        tabs.setValue(modifyTabs());
+
     }
 
-    public LiveData<String> getText() {
-        return mText;
+
+    public MutableLiveData<String[]> getTabs(){
+        return tabs;
     }
+
+
+    private String[] modifyTabs(){
+        String[] tabs = {"برنامه و بازی","ویدیو"};
+        return tabs;
+
+    }
+
+
 }
