@@ -23,7 +23,7 @@ public class MyMarketPagerAdapter extends FragmentPagerAdapter {
     @NonNull
     @Override
     public Fragment getItem(int position) {
-        if (position==0){
+        if (position==1){
             return new MyMarketProgramGameFragment();
         }
         else {

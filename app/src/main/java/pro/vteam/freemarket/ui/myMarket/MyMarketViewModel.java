@@ -21,7 +21,9 @@ public class MyMarketViewModel extends ViewModel {
 
 
     private String[] modifyTabs(){
-        String[] tabs = {"برنامه و بازی","ویدیو"};
+        String[] tabs=new String[2] ;
+        tabs[0]="ویدیو";
+        tabs[1]="برنامه و بازی";
         return tabs;
 
     }

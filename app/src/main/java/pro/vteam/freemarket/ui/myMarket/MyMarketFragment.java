@@ -51,7 +51,7 @@ public class MyMarketFragment extends Fragment {
             public void onChanged(String[] strings) {
                 MyMarketPagerAdapter adapter=new MyMarketPagerAdapter(getChildFragmentManager(),strings);
                 viewPager.setAdapter(adapter);
-                tabLayout.getTabAt(0).select();
+                tabLayout.getTabAt(1).select();
 
 
             }

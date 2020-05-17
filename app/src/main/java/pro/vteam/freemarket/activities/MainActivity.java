@@ -24,9 +24,11 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         Configuration configuration = getResources().getConfiguration();
         configuration.setLayoutDirection(new Locale("fa"));
         getResources().updateConfiguration(configuration, getResources().getDisplayMetrics());
+
         setContentView(R.layout.activity_main);
 
         BottomNavigationView navView = findViewById(R.id.nav_view);
