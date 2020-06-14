@@ -11,7 +11,7 @@
         android:id="@+id/recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:listitem="@layout/model_categories_programs_games"
+        tools:listitem="@layout/model_categories_item"
         />
 
 </LinearLayout>

@@ -5,11 +5,11 @@ import java.util.ArrayList;
 public class AppListModel {
 
     private String title;
-    private ArrayList<AppsModel> appList;
+    private ArrayList<AppModel> appList;
     private int viewType;
 
 
-    public AppListModel(ArrayList<AppsModel> appList, String title) {
+    public AppListModel(ArrayList<AppModel> appList, String title) {
         this.title=title;
         this.appList = appList;
 
@@ -19,7 +19,7 @@ public class AppListModel {
         return title;
     }
 
-    public ArrayList<AppsModel> getAppList() {
+    public ArrayList<AppModel> getAppList() {
         return appList;
     }
 

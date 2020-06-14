@@ -11,7 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import pro.vteam.freemarket.R;
 
-public class MyMarketProgramGameFragment extends Fragment {
+public class MyMarketFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

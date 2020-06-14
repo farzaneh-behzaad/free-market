@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-import pro.vteam.freemarket.models.CategoriesList;
+import pro.vteam.freemarket.models.CategoriesTabListModel;
 import pro.vteam.freemarket.repository.Repository;
 
 public class CategoriesTabViewModel extends ViewModel {
@@ -17,13 +17,13 @@ public class CategoriesTabViewModel extends ViewModel {
     public ObservableBoolean isLoading = new ObservableBoolean(true);
     public ObservableBoolean isFailed = new ObservableBoolean(false);
 
-    private MutableLiveData<ArrayList<CategoriesList>> lists;
+    private MutableLiveData<ArrayList<CategoriesTabListModel>> lists;
 
     public CategoriesTabViewModel() {
         pullData();
     }
 
-    MutableLiveData<ArrayList<CategoriesList>> getObjectsList() {
+    MutableLiveData<ArrayList<CategoriesTabListModel>> getObjectsList() {
         return lists;
     }
 
@@ -39,7 +39,7 @@ public class CategoriesTabViewModel extends ViewModel {
 
         Repository.getCategoriesLists(new Repository.OnAccessListener() {
             @Override
-            public void onAccess(ArrayList<CategoriesList> list) {
+            public void onAccess(ArrayList<CategoriesTabListModel> list) {
                 lists.setValue(list);
                 isFailed.set(false);
                 isLoading.set(false);

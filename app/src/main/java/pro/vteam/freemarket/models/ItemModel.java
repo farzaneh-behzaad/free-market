@@ -17,6 +17,7 @@ public class ItemModel {
         this.viewType = viewType;
     }
 
+
     public BannerListModel getBannerListModel() {
         return bannerListModel;
     }
@@ -25,7 +26,10 @@ public class ItemModel {
         return appListModel;
     }
 
+
     public int getViewType() {
         return viewType;
     }
+
+
 }

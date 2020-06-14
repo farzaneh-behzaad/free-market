@@ -3,14 +3,12 @@ package pro.vteam.freemarket.repository;
 import android.util.Log;
 
 
-import androidx.lifecycle.MutableLiveData;
-
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.interfaces.CategoriesService;
 
 
-import pro.vteam.freemarket.models.CategoriesList;
+import pro.vteam.freemarket.models.CategoriesTabListModel;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -20,7 +18,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class Repository {
 
     public interface OnAccessListener{
-        void onAccess(ArrayList<CategoriesList> list);
+        void onAccess(ArrayList<CategoriesTabListModel> list);
         void onFailed();
     }
 

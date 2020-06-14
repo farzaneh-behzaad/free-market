@@ -15,16 +15,16 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
-import pro.vteam.freemarket.activities.ItemActivity;
+import pro.vteam.freemarket.activities.CategoriesItemActivity;
 import pro.vteam.freemarket.adapter.CategoriesRecyclerAdapter;
 import pro.vteam.freemarket.interfaces.CategoriesItemsListener;
-import pro.vteam.freemarket.models.CategoriesListItems;
+import pro.vteam.freemarket.models.CategoriesItemModel;
 
 public class ProgramsGamesFragment extends Fragment {
 
-    private ArrayList<CategoriesListItems> list;
+    private ArrayList<CategoriesItemModel> list;
 
-    public ProgramsGamesFragment(ArrayList<CategoriesListItems> list) {
+    public ProgramsGamesFragment(ArrayList<CategoriesItemModel> list) {
         this.list = list;
     }
 
@@ -39,7 +39,7 @@ public class ProgramsGamesFragment extends Fragment {
         categoriesRecyclerAdapter.setCategoriesItemsListener(new CategoriesItemsListener() {
             @Override
             public void onItemClick(int position) {
-                Intent intent=new Intent(getActivity(), ItemActivity.class);
+                Intent intent=new Intent(getActivity(), CategoriesItemActivity.class);
                 intent.putExtra("title",list.get(position).getTxt_subject());
                 startActivity(intent);
             }

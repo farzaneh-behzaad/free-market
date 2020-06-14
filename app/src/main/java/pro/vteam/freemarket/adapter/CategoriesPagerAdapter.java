@@ -6,14 +6,15 @@ import androidx.fragment.app.FragmentPagerAdapter;
 
 import java.util.ArrayList;
 
-import pro.vteam.freemarket.models.CategoriesList;
 import pro.vteam.freemarket.fragments.ProgramsGamesFragment;
+import pro.vteam.freemarket.models.CategoriesTabListModel;
+import pro.vteam.freemarket.models.ItemModel;
 
 public class CategoriesPagerAdapter extends FragmentPagerAdapter {
 
-    private ArrayList<CategoriesList> listModels;
+    private ArrayList<CategoriesTabListModel> listModels;
 
-    public CategoriesPagerAdapter(FragmentManager fm, ArrayList<CategoriesList> listModels) {
+    public CategoriesPagerAdapter(FragmentManager fm, ArrayList<CategoriesTabListModel> listModels) {
         super(fm);
         this.listModels = listModels;
 
@@ -24,13 +25,12 @@ public class CategoriesPagerAdapter extends FragmentPagerAdapter {
 
 
        // return new ProgramsGamesFragment(listModels.get(position).getListItems());
-
         // because of change tabs order
         if(position==0){
-         return new ProgramsGamesFragment(listModels.get(1).getListItems());
+         return new ProgramsGamesFragment(listModels.get(1).getItemsList());
         }
         else {
-            return new ProgramsGamesFragment(listModels.get(0).getListItems());
+            return new ProgramsGamesFragment(listModels.get(0).getItemsList());
         }
     }
 
@@ -38,12 +38,11 @@ public class CategoriesPagerAdapter extends FragmentPagerAdapter {
     public CharSequence getPageTitle(int position) {
 
       //  return listModels.get(position).getTitle();
-
-      // because of change tabs order
+        // because of change tabs order
         if(position==0){
             return listModels.get(1).getTitle();}
         else {
-            return    listModels.get(0).getTitle();}
+            return   listModels.get(0).getTitle();}
     }
 
     @Override

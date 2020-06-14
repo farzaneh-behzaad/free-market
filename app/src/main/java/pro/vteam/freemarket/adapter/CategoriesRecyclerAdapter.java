@@ -17,15 +17,15 @@ import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.interfaces.CategoriesItemsListener;
-import pro.vteam.freemarket.models.CategoriesListItems;
+import pro.vteam.freemarket.models.CategoriesItemModel;
 
 public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRecyclerAdapter.ViewHolder> {
-    private ArrayList<CategoriesListItems> itemsList;
+    private ArrayList<CategoriesItemModel> itemsList;
     private Context context;
     private CategoriesItemsListener categoriesItemsListener;
 
 
-    public CategoriesRecyclerAdapter(Context context, ArrayList<CategoriesListItems> itemsList) {
+    public CategoriesRecyclerAdapter(Context context, ArrayList<CategoriesItemModel> itemsList) {
         this.context = context;
         this.itemsList = itemsList;
     }
@@ -34,7 +34,7 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRe
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.model_categories_programs_games, parent, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.model_categories_item, parent, false);
         ViewHolder holder = new ViewHolder(view);
         holder.txt_subject = view.findViewById(R.id.txt_subject);
         holder.iconUrl = view.findViewById(R.id.img_icon);
@@ -47,7 +47,7 @@ public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRe
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
 
-        CategoriesListItems item = itemsList.get(position);
+        CategoriesItemModel item = itemsList.get(position);
 
         if (position == itemsList.size() - 1) {
             holder.divider.setVisibility(View.GONE);

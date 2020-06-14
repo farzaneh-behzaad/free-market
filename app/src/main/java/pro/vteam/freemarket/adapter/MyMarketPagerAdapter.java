@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
-import pro.vteam.freemarket.fragments.MyMarketProgramGameFragment;
+import pro.vteam.freemarket.fragments.MyMarketFragment;
 import pro.vteam.freemarket.fragments.MyMarketVideoFragment;
 
 public class MyMarketPagerAdapter extends FragmentPagerAdapter {
@@ -24,7 +24,7 @@ public class MyMarketPagerAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int position) {
         if (position==1){
-            return new MyMarketProgramGameFragment();
+            return new MyMarketFragment();
         }
         else {
             return new  MyMarketVideoFragment();

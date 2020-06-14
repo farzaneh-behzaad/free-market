@@ -15,8 +15,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
-import pro.vteam.freemarket.adapter.VideoRecyclerAdapter;
-import pro.vteam.freemarket.models.AppListModel;
+import pro.vteam.freemarket.adapter.ItemRecyclerAdapter;
 import pro.vteam.freemarket.models.ItemModel;
 
 public class VideoFragment extends Fragment {
@@ -33,7 +32,7 @@ public class VideoFragment extends Fragment {
           videoViewModel.getList().observe(getViewLifecycleOwner(), new Observer<ArrayList<ItemModel>>() {
               @Override
               public void onChanged(ArrayList<ItemModel> appListModels) {
-                  VideoRecyclerAdapter videoRecyclerAdapter=new VideoRecyclerAdapter(getContext(), appListModels);
+                  ItemRecyclerAdapter videoRecyclerAdapter=new ItemRecyclerAdapter(getContext(), appListModels);
                   recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
                   recyclerView.setAdapter(videoRecyclerAdapter);
               }

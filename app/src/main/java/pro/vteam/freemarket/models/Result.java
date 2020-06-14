@@ -23,9 +23,9 @@ public class Result {
 
 
     private @SerializedName("data")
-    ArrayList<CategoriesList> categoriesLists;
+    ArrayList<CategoriesTabListModel> categoriesLists;
 
-    public ArrayList<CategoriesList> getCategoriesLists() {
+    public ArrayList<CategoriesTabListModel> getCategoriesLists() {
         return categoriesLists;
     }
 

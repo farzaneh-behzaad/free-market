@@ -7,10 +7,7 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
 import androidx.fragment.app.Fragment;
-
-import android.widget.ProgressBar;
 
 import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
@@ -42,6 +39,7 @@ public class CategoriesFragment extends Fragment {
         binding.setIsLoading(viewModel.isLoading);
         binding.setIsFailed(viewModel.isFailed);
         binding.included.setListener(viewModel);
+
 
 
         viewModel.getObjectsList().observe(getViewLifecycleOwner(), categoriesLists -> {

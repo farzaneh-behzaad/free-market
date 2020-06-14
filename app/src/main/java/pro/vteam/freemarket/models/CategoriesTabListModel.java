@@ -5,24 +5,24 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 
 
-public class CategoriesList {
+public class CategoriesTabListModel {
 
     @SerializedName("title")
     private String title;
 
     @SerializedName("items")
-    private ArrayList<CategoriesListItems> listItems;
+    private ArrayList<CategoriesItemModel> itemsList;
 
-    public CategoriesList(String title, ArrayList<CategoriesListItems> listItems) {
+    public CategoriesTabListModel(String title, ArrayList<CategoriesItemModel> itemsList) {
         this.title = title;
-        this.listItems = listItems;
+        this.itemsList = itemsList;
     }
 
     public String getTitle() {
         return title;
     }
 
-    public ArrayList<CategoriesListItems> getListItems() {
-        return listItems;
+    public ArrayList<CategoriesItemModel> getItemsList() {
+        return itemsList;
     }
 }

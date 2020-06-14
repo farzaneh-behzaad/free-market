@@ -14,14 +14,13 @@ import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.models.AppModel;
-import pro.vteam.freemarket.models.AppsModel;
 
 public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.viewHolder>{
     private Context context;
-    private ArrayList<AppsModel> list;
+    private ArrayList<AppModel> list;
 
 
-    public AppsAdapter(Context context,ArrayList<AppsModel> list){
+    public AppsAdapter(Context context,ArrayList<AppModel> list){
         this.context= context;
         this.list=list;
 
@@ -33,7 +32,7 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.viewHolder>{
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.model_apps,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.model_app,parent,false);
 
         AppsAdapter.viewHolder viewHolder=new AppsAdapter.viewHolder(view);
         viewHolder.appsIcon=view.findViewById(R.id.appsIcon);
@@ -45,7 +44,7 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.viewHolder>{
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        AppsModel item = list.get(position);
+        AppModel item = list.get(position);
 //
 //        Glide.with(context)
 //                .load(item.getAppIconUrl())

@@ -1,32 +1,28 @@
 package pro.vteam.freemarket.models;
 
 public class AppModel {
+   private String imgAppUrl;
+   private String  appName;
+   private String txtExtra;
 
-    private String appIconUrl;
-    private String appName;
-    private String appCost;
-
-    public String getAppIconUrl() {
-        return appIconUrl;
+    public AppModel(String imgAppUrl, String appName, String txtExtra) {
+        this.imgAppUrl = imgAppUrl;
+        this.appName = appName;
+        this.txtExtra = txtExtra;
     }
 
-    public void setAppIconUrl(String appIconUrl) {
-        this.appIconUrl = appIconUrl;
+    public String getImgAppUrl() {
+        return imgAppUrl;
     }
 
     public String getAppName() {
         return appName;
     }
 
-    public void setAppName(String appName) {
-        this.appName = appName;
+    public String getTxtExtra() {
+        return txtExtra;
     }
 
-    public String getAppCost() {
-        return appCost;
-    }
 
-    public void setAppCost(String appCost) {
-        this.appCost = appCost;
-    }
+
 }
