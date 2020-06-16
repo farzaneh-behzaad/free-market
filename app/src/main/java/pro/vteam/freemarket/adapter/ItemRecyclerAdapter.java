@@ -5,17 +5,14 @@ import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.cardview.widget.CardView;
-import androidx.lifecycle.Observer;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-
-import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
 
@@ -25,7 +22,7 @@ import pro.vteam.freemarket.models.AppModel;
 import pro.vteam.freemarket.models.BannerListModel;
 import pro.vteam.freemarket.models.BannerModel;
 import pro.vteam.freemarket.models.AppListModel;
-import pro.vteam.freemarket.models.CategoriesItemModel;
+import pro.vteam.freemarket.models.BigPromotionBannerModel;
 import pro.vteam.freemarket.models.ItemModel;
 
 
@@ -61,11 +58,11 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
                 View view = LayoutInflater.from(context).inflate(R.layout.model_app_list, parent, false);
                 return new AppsViewHolder(view);
             }
-//
-//            case 2: {
-//                View view = LayoutInflater.from(context).inflate(R.layout.model_categories_item, parent, false);
-//                return new CategoriesItemsViewHolder(view);
-//            }
+
+            case 2: {
+                View view = LayoutInflater.from(context).inflate(R.layout.model_big_promotion_banner, parent, false);
+                return new BigPromotionViewHolder(view);
+            }
             default:
                 return null;
         }
@@ -83,9 +80,9 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
             case 1:
                 ((AppsViewHolder) holder).setData(list.get(position).getAppListModel());
                 break;
-//            case 2:
-//                ((CategoriesItemsViewHolder) holder).setData(list.get(position).getCategoriesItemModel(),position);
-//                break;
+            case 2:
+                ((BigPromotionViewHolder) holder).setData(list.get(position).getBigPromotionBannerModel());
+                break;
 
         }
     }
@@ -101,6 +98,41 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     public int getItemCount() {
         return list.size();
+    }
+
+
+    public class BigPromotionViewHolder extends RecyclerView.ViewHolder {
+
+
+        ImageView img_promotion_banner;
+        ImageView img_promotion_icon;
+        TextView txt_promotion_name;
+        Button btn_install;
+
+        public BigPromotionViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            img_promotion_banner = itemView.findViewById(R.id.img_promotion_banner);
+            img_promotion_icon = itemView.findViewById(R.id.img_promotion_icon);
+            txt_promotion_name = itemView.findViewById(R.id.txt_promotion_name);
+            btn_install = itemView.findViewById(R.id.btn_install);
+
+        }
+
+
+        void setData(BigPromotionBannerModel bigPromotionBannerModel) {
+//            Glide.with(context)
+//                    .load(bigPromotionBannerModel.getPromotion_banner_url())
+//                    .into(img_promotion_banner);
+//
+//            Glide.with(context)
+//                    .load(bigPromotionBannerModel.getPromotion_icon_url())
+//                    .into(img_promotion_icon);
+
+
+            txt_promotion_name.setText(bigPromotionBannerModel.getTxt_name());
+
+        }
     }
 
 
@@ -153,6 +185,7 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
     }
+
 
 //    public class CategoriesItemsViewHolder extends RecyclerView.ViewHolder {
 //

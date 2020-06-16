@@ -1,26 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txt_app_title"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/root_constraintLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="بازی های پیشنهادی برای شما"
-        android:textColor="@color/textColor"
-        android:layout_marginStart="@dimen/start_margin"
-        android:textStyle="bold"/>
+        android:padding="@dimen/app_padding"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/title_constraintLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/app_recycler">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_app_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                android:text="بازی های پیشنهادی برای شما"
+                android:textColor="@color/textColor"
+                android:layout_marginStart="@dimen/start_margin"
+                android:textStyle="bold"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@id/icon_more"
+                app:layout_constraintTop_toTopOf="parent"
+                android:text="بیشتر"
+
+                />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/icon_more"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@id/txt_more"
+                app:layout_constraintTop_toTopOf="parent"
+                android:src="@drawable/ic_keyboard_arrow_left_gray_24dp"
+                android:layout_marginEnd="@dimen/start_margin"/>
+
+
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/app_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txt_app_title"
+        app:layout_constraintTop_toBottomOf="@id/title_constraintLayout"
         app:layout_constraintStart_toStartOf="parent"/>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>

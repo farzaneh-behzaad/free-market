@@ -39,6 +39,20 @@ public class ProgramsGamesFragment extends Fragment {
         categoriesRecyclerAdapter.setCategoriesItemsListener(new CategoriesItemsListener() {
             @Override
             public void onItemClick(int position) {
+
+//                ItemCategoriesFragment nextFrag= new ItemCategoriesFragment();
+//                Bundle args = new Bundle();
+//                args.putString("title", list.get(position).getTxt_subject());
+//                nextFrag.setArguments(args);
+//                getActivity().getSupportFragmentManager().beginTransaction()
+//                        .replace( R.id.nav_host_fragment, nextFrag, "findThisFragment")
+//                        .addToBackStack(null)
+//                        .commit();
+
+
+
+
+
                 Intent intent=new Intent(getActivity(), CategoriesItemActivity.class);
                 intent.putExtra("title",list.get(position).getTxt_subject());
                 startActivity(intent);

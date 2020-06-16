@@ -35,8 +35,8 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.viewHolder>{
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.model_app,parent,false);
 
         AppsAdapter.viewHolder viewHolder=new AppsAdapter.viewHolder(view);
-        viewHolder.appsIcon=view.findViewById(R.id.appsIcon);
-        viewHolder.appsName=view.findViewById(R.id.appsName);
+        viewHolder.appsIcon=view.findViewById(R.id.appIcon);
+        viewHolder.appsName=view.findViewById(R.id.appName);
         viewHolder.txtExtra=view.findViewById(R.id.txtExtra);
 
         return viewHolder;
@@ -68,8 +68,8 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.viewHolder>{
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            appsIcon= itemView.findViewById(R.id.appsIcon);
-            appsName= itemView.findViewById(R.id.appsName);
+            appsIcon= itemView.findViewById(R.id.appIcon);
+            appsName= itemView.findViewById(R.id.appName);
             txtExtra= itemView.findViewById(R.id.txtExtra);
         }
     }
