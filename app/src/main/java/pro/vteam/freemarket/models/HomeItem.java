@@ -14,7 +14,7 @@ public class HomeItem {
     @SerializedName("price")
     private String price;
     @SerializedName("tag")
-    private String tag;
+    private HomeTag tag;
 
     public String getLink() {
         return link;
@@ -32,7 +32,7 @@ public class HomeItem {
         return price;
     }
 
-    public String getTag() {
+    public HomeTag getTag() {
         return tag;
     }
 }

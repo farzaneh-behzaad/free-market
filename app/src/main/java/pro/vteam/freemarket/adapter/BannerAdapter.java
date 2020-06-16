@@ -14,7 +14,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
-import pro.vteam.freemarket.models.BannerModel;
 import pro.vteam.freemarket.models.HomeBanner;
 
 public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder>{
@@ -30,7 +29,6 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder
 
 
 
-
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -38,9 +36,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder
 
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.model_banner,parent,false);
         BannerAdapter.viewHolder viewHolder=new BannerAdapter.viewHolder(view);
-        viewHolder.bannerUrl=view.findViewById(R.id.img_banner);
-
-
+        viewHolder.bannerImage =view.findViewById(R.id.img_banner);
 
         return viewHolder;
     }
@@ -50,7 +46,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder
         HomeBanner item = list.get(position);
         Glide.with(context)
                 .load(item.getHomeImage().getPath())
-                .into(holder.bannerUrl);
+                .into(holder.bannerImage);
 
 
     }
@@ -63,12 +59,12 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder
 
     public class viewHolder extends RecyclerView.ViewHolder{
 
-        private ImageView bannerUrl;
+        private ImageView bannerImage;
 
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            bannerUrl= itemView.findViewById(R.id.img_banner);
+            bannerImage = itemView.findViewById(R.id.img_banner);
 
         }
     }

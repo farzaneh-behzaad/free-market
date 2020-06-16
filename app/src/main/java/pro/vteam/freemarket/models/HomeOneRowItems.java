@@ -10,6 +10,7 @@ public class HomeOneRowItems {
         private String title;
         @SerializedName("inlineAction")
         private HomeInlineAction homeInlineAction;
+
         @SerializedName("items")
         private ArrayList<HomeItem> items;
 
@@ -23,7 +24,7 @@ public class HomeOneRowItems {
         }
 
         public ArrayList<HomeItem> getItems() {
-            return items;
-        }
+        return items;
     }
+}
 

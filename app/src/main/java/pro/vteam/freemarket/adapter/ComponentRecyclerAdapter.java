@@ -62,7 +62,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 return new OneRowItemsViewHolder(view);
             }
 
-            case  Constant.ONE_ROW_BANNERS: {
+            case Constant.ONE_ROW_BANNERS: {
                 View view = LayoutInflater.from(context).inflate(R.layout.model_one_row_banners, parent, false);
                 return new OneRowBannersViewHolder(view);
             }
@@ -76,24 +76,24 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         int viewType = getItemViewType(position);
-        Gson gson=new Gson();
+        Gson gson = new Gson();
         switch (viewType) {
 
             case Constant.BIG_PROMOTION_BANNER:
                 String jsonPromotionObject = gson.toJson(list.get(position).getObject());
-                HomeBigPromotionBanner bigPromotionBanner = gson.fromJson(jsonPromotionObject,HomeBigPromotionBanner.class);
+                HomeBigPromotionBanner bigPromotionBanner = gson.fromJson(jsonPromotionObject, HomeBigPromotionBanner.class);
                 ((BigPromotionBannerViewHolder) holder).setData(bigPromotionBanner);
                 break;
 
             case Constant.ONE_ROW_BANNERS:
                 String jsonBannerObject = gson.toJson(list.get(position).getObject());
-                HomeOneRowBanners oneRowBanners =gson.fromJson(jsonBannerObject,HomeOneRowBanners.class);
+                HomeOneRowBanners oneRowBanners = gson.fromJson(jsonBannerObject, HomeOneRowBanners.class);
                 ((OneRowBannersViewHolder) holder).setData(oneRowBanners);
                 break;
 
             case Constant.ONE_ROW_ITEMS:
                 String jsonItemObject = gson.toJson(list.get(position).getObject());
-                HomeOneRowItems oneRowItems =gson.fromJson(jsonItemObject,HomeOneRowItems.class);
+                HomeOneRowItems oneRowItems = gson.fromJson(jsonItemObject, HomeOneRowItems.class);
                 ((OneRowItemsViewHolder) holder).setData(oneRowItems);
                 break;
 
@@ -114,7 +114,8 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
             case "BigPromotionBanner":
                 return Constant.BIG_PROMOTION_BANNER;
-            default:return 0;
+            default:
+                return 0;
         }
 
     }
@@ -127,7 +128,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
     }
 
 
-    public  class BigPromotionBannerViewHolder extends RecyclerView.ViewHolder {
+    public class BigPromotionBannerViewHolder extends RecyclerView.ViewHolder {
 
         ImageView img_promotion_banner;
         ImageView img_promotion_icon;
@@ -153,7 +154,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             Glide.with(context)
                     .load(bigPromotionBanner.getHomeItem().getHomeIcon().getPath())
                     .into(img_promotion_icon);
-                   txt_promotion_name.setText(bigPromotionBanner.getHomeItem().getTitle());
+            txt_promotion_name.setText(bigPromotionBanner.getHomeItem().getTitle());
 
         }
     }
@@ -177,7 +178,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
             bannerTitle.setText(oneRowBanners.getTitle());
             ArrayList<HomeBanner> bannerList = oneRowBanners.getBanners();
-            BannerAdapter bannerAdapter = new BannerAdapter(context,bannerList );
+            BannerAdapter bannerAdapter = new BannerAdapter(context, bannerList);
             bannerRecycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             bannerRecycler.setAdapter(bannerAdapter);
         }
@@ -200,7 +201,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
         void setData(HomeOneRowItems oneRowItems) {
             appsTitle.setText(oneRowItems.getTitle());
-            ArrayList<HomeItem> items =oneRowItems.getItems();
+            ArrayList<HomeItem> items = oneRowItems.getItems();
             ItemAdapter itemAdapter = new ItemAdapter(context, items);
             appRecycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             appRecycler.setAdapter(itemAdapter);
@@ -208,47 +209,6 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
     }
 
-
-//    public class CategoriesItemsViewHolder extends RecyclerView.ViewHolder {
-//
-//        TextView subject;
-//        ImageView icon;
-//        View divider;
-//        CardView cardView;
-//
-//        CategoriesItemsViewHolder(@NonNull View itemView) {
-//            super(itemView);
-//
-//            subject = itemView.findViewById(R.id.txt_subject);
-//            icon = itemView.findViewById(R.id.img_icon);
-//            divider = itemView.findViewById(R.id.divider);
-//            cardView=itemView.findViewById(R.id.item_cardView);
-//        }
-//
-//        void setData(CategoriesItemModel categoriesItemModel,int position) {
-//
-//
-//            if (position == list.size() - 1) {
-//               divider.setVisibility(View.GONE);
-//            }else {
-//               divider.setVisibility(View.VISIBLE);
-//            }
-//          subject.setText(categoriesItemModel.getTxt_subject());
-//            Glide.with(context)
-//                    .load(categoriesItemModel.getIconUrl())
-//                    .into(icon);
-//            cardView.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    if (categoriesItemsListener != null) {
-//                        categoriesItemsListener.onItemClick(position);
-//                    }
-//                }
-//            });
-//
-//        }
-//
-//    }
 }
 
 

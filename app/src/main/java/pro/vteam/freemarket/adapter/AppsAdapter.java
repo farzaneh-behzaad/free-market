@@ -32,12 +32,12 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.viewHolder>{
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.model_app,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.model_item,parent,false);
 
         AppsAdapter.viewHolder viewHolder=new AppsAdapter.viewHolder(view);
-        viewHolder.appsIcon=view.findViewById(R.id.appIcon);
-        viewHolder.appsName=view.findViewById(R.id.appName);
-        viewHolder.txtExtra=view.findViewById(R.id.txtExtra);
+        viewHolder.appsIcon=view.findViewById(R.id.itemIcon);
+        viewHolder.appsName=view.findViewById(R.id.itemName);
+        viewHolder.txtExtra=view.findViewById(R.id.itemPrice);
 
         return viewHolder;
     }
@@ -68,9 +68,9 @@ public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.viewHolder>{
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            appsIcon= itemView.findViewById(R.id.appIcon);
-            appsName= itemView.findViewById(R.id.appName);
-            txtExtra= itemView.findViewById(R.id.txtExtra);
+            appsIcon= itemView.findViewById(R.id.itemIcon);
+            appsName= itemView.findViewById(R.id.itemName);
+            txtExtra= itemView.findViewById(R.id.itemPrice);
         }
     }
 }

@@ -15,7 +15,6 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
-import pro.vteam.freemarket.models.AppModel;
 import pro.vteam.freemarket.models.HomeItem;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder>{
@@ -28,19 +27,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder>{
         this.list=list;
 
     }
-
-
-
-
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.model_app,parent,false);
+        View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.model_item,parent,false);
 
         ItemAdapter.viewHolder viewHolder=new ItemAdapter.viewHolder(view);
-        viewHolder.appsIcon=view.findViewById(R.id.appIcon);
-        viewHolder.appsName=view.findViewById(R.id.appName);
-        viewHolder.txtExtra=view.findViewById(R.id.txtExtra);
+        viewHolder.itemIcon =view.findViewById(R.id.itemIcon);
+        viewHolder.itemName =view.findViewById(R.id.itemName);
+        viewHolder.itemPrice =view.findViewById(R.id.itemPrice);
 
         return viewHolder;
     }
@@ -51,10 +46,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder>{
 
         Glide.with(context)
                 .load(item.getHomeIcon().getPath())
-                .into(holder.appsIcon);
+                .into(holder.itemIcon);
 
-        holder.appsName.setText(item.getTitle());
-        holder.txtExtra.setText(item.getPrice());
+        holder.itemName.setText(item.getTitle());
+        holder.itemPrice.setText(item.getPrice());
     }
 
 
@@ -65,15 +60,15 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder>{
 
     public class viewHolder extends RecyclerView.ViewHolder{
 
-        private ImageView appsIcon;
-        private TextView appsName;
-        private TextView txtExtra;
+        private ImageView itemIcon;
+        private TextView itemName;
+        private TextView itemPrice;
 
         public viewHolder(@NonNull View itemView) {
             super(itemView);
-            appsIcon= itemView.findViewById(R.id.appIcon);
-            appsName= itemView.findViewById(R.id.appName);
-            txtExtra= itemView.findViewById(R.id.txtExtra);
+            itemIcon = itemView.findViewById(R.id.itemIcon);
+            itemName = itemView.findViewById(R.id.itemName);
+            itemPrice = itemView.findViewById(R.id.itemPrice);
         }
     }
 }
