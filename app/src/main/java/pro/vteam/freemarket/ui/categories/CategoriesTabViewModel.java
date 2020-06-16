@@ -37,7 +37,7 @@ public class CategoriesTabViewModel extends ViewModel {
         isLoading.notifyChange();
         isFailed.notifyChange();
 
-        Repository.getCategoriesLists(new Repository.OnAccessListener() {
+        Repository.getCategoriesLists(new Repository.categoriesDataListener() {
             @Override
             public void onAccess(ArrayList<CategoriesTabListModel> list) {
                 lists.setValue(list);

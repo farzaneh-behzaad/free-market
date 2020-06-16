@@ -12,33 +12,37 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
 
+import pro.vteam.freemarket.Constant;
 import pro.vteam.freemarket.R;
-import pro.vteam.freemarket.interfaces.CategoriesItemsListener;
+import pro.vteam.freemarket.models.AppListModel;
 import pro.vteam.freemarket.models.AppModel;
 import pro.vteam.freemarket.models.BannerListModel;
 import pro.vteam.freemarket.models.BannerModel;
-import pro.vteam.freemarket.models.AppListModel;
 import pro.vteam.freemarket.models.BigPromotionBannerModel;
-import pro.vteam.freemarket.models.ItemModel;
+import pro.vteam.freemarket.models.HomeBanner;
+import pro.vteam.freemarket.models.HomeBigPromotionBanner;
+import pro.vteam.freemarket.models.HomeComponent;
+import pro.vteam.freemarket.models.HomeItem;
+import pro.vteam.freemarket.models.HomeOneRowBanners;
+import pro.vteam.freemarket.models.HomeOneRowItems;
 
 
-public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     private Context context;
-    private ArrayList<ItemModel> list;
-    private CategoriesItemsListener categoriesItemsListener;
+    private ArrayList<HomeComponent> list;
 
-    public ItemRecyclerAdapter(Context context, ArrayList<ItemModel> list) {
+
+    public ComponentRecyclerAdapter(Context context, ArrayList<HomeComponent> list) {
         this.context = context;
         this.list = list;
-    }
-
-
-    public void setCategoriesItemsListener(CategoriesItemsListener categoriesItemsListener) {
-        this.categoriesItemsListener = categoriesItemsListener;
     }
 
 
@@ -48,19 +52,19 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
 
         switch (viewType) {
-            case 0: {
-                View view = LayoutInflater.from(context).inflate(R.layout.model_one_row_banners, parent, false);
-                return new BannerViewHolder(view);
-
-            }
-            case 1: {
-                View view = LayoutInflater.from(context).inflate(R.layout.model_one_row_items, parent, false);
-                return new AppsViewHolder(view);
-            }
-
-            case 2: {
+            case Constant.BIG_PROMOTION_BANNER: {
                 View view = LayoutInflater.from(context).inflate(R.layout.model_big_promotion_banner, parent, false);
-                return new BigPromotionViewHolder(view);
+                return new BigPromotionBannerViewHolder(view);
+
+            }
+            case Constant.ONE_ROW_ITEMS: {
+                View view = LayoutInflater.from(context).inflate(R.layout.model_one_row_items, parent, false);
+                return new OneRowItemsViewHolder(view);
+            }
+
+            case  Constant.ONE_ROW_BANNERS: {
+                View view = LayoutInflater.from(context).inflate(R.layout.model_one_row_banners, parent, false);
+                return new OneRowBannersViewHolder(view);
             }
             default:
                 return null;
@@ -72,15 +76,25 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
         int viewType = getItemViewType(position);
+        Gson gson=new Gson();
         switch (viewType) {
-            case 0:
-                ((BannerViewHolder) holder).setData(list.get(position).getBannerListModel());
+
+            case Constant.BIG_PROMOTION_BANNER:
+                String jsonPromotionObject = gson.toJson(list.get(position).getObject());
+                HomeBigPromotionBanner bigPromotionBanner = gson.fromJson(jsonPromotionObject,HomeBigPromotionBanner.class);
+                ((BigPromotionBannerViewHolder) holder).setData(bigPromotionBanner);
                 break;
-            case 1:
-                ((AppsViewHolder) holder).setData(list.get(position).getAppListModel());
+
+            case Constant.ONE_ROW_BANNERS:
+                String jsonBannerObject = gson.toJson(list.get(position).getObject());
+                HomeOneRowBanners oneRowBanners =gson.fromJson(jsonBannerObject,HomeOneRowBanners.class);
+                ((OneRowBannersViewHolder) holder).setData(oneRowBanners);
                 break;
-            case 2:
-                ((BigPromotionViewHolder) holder).setData(list.get(position).getBigPromotionBannerModel());
+
+            case Constant.ONE_ROW_ITEMS:
+                String jsonItemObject = gson.toJson(list.get(position).getObject());
+                HomeOneRowItems oneRowItems =gson.fromJson(jsonItemObject,HomeOneRowItems.class);
+                ((OneRowItemsViewHolder) holder).setData(oneRowItems);
                 break;
 
         }
@@ -89,7 +103,20 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
     @Override
     public int getItemViewType(int position) {
-        return list.get(position).getViewType();
+        String type = list.get(position).getType();
+        switch (type) {
+
+            case "OneRowBanners":
+                return Constant.ONE_ROW_BANNERS;
+
+            case "OneRowItems":
+                return Constant.ONE_ROW_ITEMS;
+
+            case "BigPromotionBanner":
+                return Constant.BIG_PROMOTION_BANNER;
+            default:return 0;
+        }
+
     }
 
 
@@ -100,15 +127,14 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
     }
 
 
-    public class BigPromotionViewHolder extends RecyclerView.ViewHolder {
-
+    public  class BigPromotionBannerViewHolder extends RecyclerView.ViewHolder {
 
         ImageView img_promotion_banner;
         ImageView img_promotion_icon;
         TextView txt_promotion_name;
         Button btn_install;
 
-        public BigPromotionViewHolder(@NonNull View itemView) {
+        BigPromotionBannerViewHolder(@NonNull View itemView) {
             super(itemView);
 
             img_promotion_banner = itemView.findViewById(R.id.img_promotion_banner);
@@ -119,29 +145,27 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
 
-        void setData(BigPromotionBannerModel bigPromotionBannerModel) {
-//            Glide.with(context)
-//                    .load(bigPromotionBannerModel.getPromotion_banner_url())
-//                    .into(img_promotion_banner);
-//
-//            Glide.with(context)
-//                    .load(bigPromotionBannerModel.getPromotion_icon_url())
-//                    .into(img_promotion_icon);
+        void setData(HomeBigPromotionBanner bigPromotionBanner) {
+            Glide.with(context)
+                    .load(bigPromotionBanner.getHomeImage().getPath())
+                    .into(img_promotion_banner);
 
-
-            txt_promotion_name.setText(bigPromotionBannerModel.getTxt_name());
+            Glide.with(context)
+                    .load(bigPromotionBanner.getHomeItem().getHomeIcon().getPath())
+                    .into(img_promotion_icon);
+                   txt_promotion_name.setText(bigPromotionBanner.getHomeItem().getTitle());
 
         }
     }
 
 
-    public class BannerViewHolder extends RecyclerView.ViewHolder {
+    public class OneRowBannersViewHolder extends RecyclerView.ViewHolder {
 
         TextView bannerTitle;
         RecyclerView bannerRecycler;
 
 
-        BannerViewHolder(@NonNull View itemView) {
+        OneRowBannersViewHolder(@NonNull View itemView) {
             super(itemView);
             bannerTitle = itemView.findViewById(R.id.txt_banner_title);
             bannerRecycler = itemView.findViewById(R.id.banner_recycler);
@@ -149,38 +173,37 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         }
 
 
-        void setData(BannerListModel bannerListModel) {
+        void setData(HomeOneRowBanners oneRowBanners) {
 
-            bannerTitle.setText(bannerListModel.getTitle());
-
-            ArrayList<BannerModel> bannerList = bannerListModel.getBannerList();
-            BannersAdapter bannersAdapter = new BannersAdapter(context, bannerList);
+            bannerTitle.setText(oneRowBanners.getTitle());
+            ArrayList<HomeBanner> bannerList = oneRowBanners.getBanners();
+            BannerAdapter bannerAdapter = new BannerAdapter(context,bannerList );
             bannerRecycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            bannerRecycler.setAdapter(bannersAdapter);
+            bannerRecycler.setAdapter(bannerAdapter);
         }
 
 
     }
 
 
-    public class AppsViewHolder extends RecyclerView.ViewHolder {
+    public class OneRowItemsViewHolder extends RecyclerView.ViewHolder {
 
         TextView appsTitle;
         RecyclerView appRecycler;
 
-        AppsViewHolder(@NonNull View itemView) {
+        OneRowItemsViewHolder(@NonNull View itemView) {
             super(itemView);
 
             appsTitle = itemView.findViewById(R.id.txt_app_title);
             appRecycler = itemView.findViewById(R.id.app_recycler);
         }
 
-        void setData(AppListModel appListModel) {
-            appsTitle.setText(appListModel.getTitle());
-            ArrayList<AppModel> appList = appListModel.getAppList();
-            AppsAdapter appsAdapter = new AppsAdapter(context, appList);
+        void setData(HomeOneRowItems oneRowItems) {
+            appsTitle.setText(oneRowItems.getTitle());
+            ArrayList<HomeItem> items =oneRowItems.getItems();
+            ItemAdapter itemAdapter = new ItemAdapter(context, items);
             appRecycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            appRecycler.setAdapter(appsAdapter);
+            appRecycler.setAdapter(itemAdapter);
         }
 
     }
