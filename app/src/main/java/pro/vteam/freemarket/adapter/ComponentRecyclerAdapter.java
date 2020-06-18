@@ -66,8 +66,8 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 View view = LayoutInflater.from(context).inflate(R.layout.model_one_row_banners, parent, false);
                 return new OneRowBannersViewHolder(view);
             }
-            default:
-                return null;
+            default:  View view=LayoutInflater.from(context).inflate(R.layout.model_unsuported_component,parent,false);
+                return new UnSupportedComponentViewHolder(view);
         }
 
     }
@@ -97,6 +97,9 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 ((OneRowItemsViewHolder) holder).setData(oneRowItems);
                 break;
 
+           default: ((UnSupportedComponentViewHolder)holder).txt_description.setText("این کامپوننت ساپورت نمی شود لطفا اپلیکیشن را آپدیت کنید.");
+
+
         }
     }
 
@@ -115,7 +118,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             case "BigPromotionBanner":
                 return Constant.BIG_PROMOTION_BANNER;
             default:
-                return 0;
+                return Constant.UN_SUPPORTED_COMPONENT;
         }
 
     }
@@ -147,9 +150,12 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
 
         void setData(HomeBigPromotionBanner bigPromotionBanner) {
-            Glide.with(context)
-                    .load(bigPromotionBanner.getHomeImage().getPath())
-                    .into(img_promotion_banner);
+
+            if(bigPromotionBanner.getHomeImage().getPath() != null) {
+                Glide.with(context)
+                        .load(bigPromotionBanner.getHomeImage().getPath())
+                        .into(img_promotion_banner);
+            }
 
             Glide.with(context)
                     .load(bigPromotionBanner.getHomeItem().getHomeIcon().getPath())
@@ -205,6 +211,16 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             ItemAdapter itemAdapter = new ItemAdapter(context, items);
             appRecycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
             appRecycler.setAdapter(itemAdapter);
+        }
+
+    }
+
+    public static class UnSupportedComponentViewHolder extends RecyclerView.ViewHolder{
+
+        TextView txt_description;
+         UnSupportedComponentViewHolder(@NonNull View itemView) {
+            super(itemView);
+            txt_description=itemView.findViewById(R.id.txt_description);
         }
 
     }
