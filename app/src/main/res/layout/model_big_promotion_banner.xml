@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
+
+
+<com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/recycler_horizontal_margin"
+    android:layout_marginEnd="@dimen/recycler_horizontal_margin"
+    app:cardCornerRadius="@dimen/big_promotion_banner_corner_radius"
+
+    >
+<androidx.constraintlayout.widget.ConstraintLayout
     android:id="@+id/bid_promotion_constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:paddingStart="@dimen/recycler_horizontal_margin"
-    android:paddingEnd="@dimen/recycler_horizontal_margin"
+
       >
 
 
@@ -19,18 +28,16 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-
-
         />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:background="#C3E41414"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
-
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="@dimen/big_promotion_banner_item_padding">
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_promotion_icon"
@@ -47,7 +54,7 @@
 
         <com.google.android.material.textview.MaterialTextView
             android:id="@+id/txt_promotion_name"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/start_margin"
             android:layout_marginEnd="@dimen/start_margin"
@@ -57,14 +64,16 @@
             android:textColor="#FFFF"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/img_promotion_icon"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/btn_inlineAction"
+            app:layout_constraintHorizontal_weight="1"/>
 
 
         <com.google.android.material.button.MaterialButton
-            android:id="@+id/btn_install"
+            android:id="@+id/btn_inlineAction"
             style="@style/ButtonStyle"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:backgroundTint="#fff"
             android:text="نصب"
             android:textColor="@color/textColor"
@@ -76,3 +85,4 @@
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>

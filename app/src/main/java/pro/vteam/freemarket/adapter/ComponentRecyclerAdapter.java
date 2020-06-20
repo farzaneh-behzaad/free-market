@@ -14,6 +14,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.google.gson.Gson;
 
 import java.util.ArrayList;
@@ -142,7 +145,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             img_promotion_banner = itemView.findViewById(R.id.img_promotion_banner);
             img_promotion_icon = itemView.findViewById(R.id.img_promotion_icon);
             txt_promotion_name = itemView.findViewById(R.id.txt_promotion_name);
-            btn_install = itemView.findViewById(R.id.btn_install);
+            btn_install = itemView.findViewById(R.id.btn_inlineAction);
             bigPromotionConstraintLayout = itemView.findViewById(R.id.bid_promotion_constraintLayout);
 
         }
@@ -163,9 +166,15 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
             ((ConstraintLayout.LayoutParams) img_promotion_icon.getLayoutParams()).dimensionRatio
                     = bigPromotionBanner.getHomeItem().getHomeIcon().getRatio().getConstraintDimensionRatio();
+
+
+            int roundRadius =(int) context.getResources().getDimension(R.dimen.big_promotion_banner_icon_corner_radius);
+            RequestOptions requestOptions = new RequestOptions().transform(new CenterCrop(),new RoundedCorners(roundRadius));
+
+
             Glide.with(context)
                     .load(bigPromotionBanner.getHomeItem().getHomeIcon().getPath())
-                    .centerCrop()
+                    .apply(requestOptions)
                     .into(img_promotion_icon);
 
             txt_promotion_name.setText(bigPromotionBanner.getHomeItem().getTitle());

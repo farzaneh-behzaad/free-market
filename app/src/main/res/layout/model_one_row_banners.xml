@@ -16,7 +16,8 @@
         android:text="بازی های پیشنهادی برای شما"
         android:textColor="@color/textColor"
         android:layout_marginStart="@dimen/recycler_horizontal_margin"
-        android:layout_marginBottom="@dimen/title_margin"
+        android:layout_marginEnd="@dimen/recycler_horizontal_margin"
+        android:paddingBottom="@dimen/title_margin"
         android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
