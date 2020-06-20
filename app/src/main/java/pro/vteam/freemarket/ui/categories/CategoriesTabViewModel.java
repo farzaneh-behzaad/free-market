@@ -14,8 +14,8 @@ import pro.vteam.freemarket.repository.Repository;
 public class CategoriesTabViewModel extends ViewModel {
 
 
-    public ObservableBoolean isLoading = new ObservableBoolean(true);
-    public ObservableBoolean isFailed = new ObservableBoolean(false);
+    ObservableBoolean isLoading = new ObservableBoolean(true);
+    ObservableBoolean isFailed = new ObservableBoolean(false);
 
     private MutableLiveData<ArrayList<CategoriesTabListModel>> lists;
 

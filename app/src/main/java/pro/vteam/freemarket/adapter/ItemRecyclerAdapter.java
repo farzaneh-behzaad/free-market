@@ -171,8 +171,8 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         AppsViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            appsTitle = itemView.findViewById(R.id.txt_app_title);
-            appRecycler = itemView.findViewById(R.id.app_recycler);
+            appsTitle = itemView.findViewById(R.id.txt_items_title);
+            appRecycler = itemView.findViewById(R.id.item_recycler);
         }
 
         void setData(AppListModel appListModel) {

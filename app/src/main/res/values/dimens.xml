@@ -5,4 +5,6 @@
     <dimen name="start_margin">12dp</dimen>
     <dimen name="layout_padding">16dp</dimen>
     <dimen name="app_padding">8dp</dimen>
+    <dimen name="recycler_horizontal_margin">12dp</dimen>
+    <dimen name="recycler_vertical_margin">18dp</dimen>
 </resources>

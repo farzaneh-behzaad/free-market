@@ -9,29 +9,24 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-import com.google.gson.JsonElement;
 
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.Constant;
 import pro.vteam.freemarket.R;
-import pro.vteam.freemarket.models.AppListModel;
-import pro.vteam.freemarket.models.AppModel;
-import pro.vteam.freemarket.models.BannerListModel;
-import pro.vteam.freemarket.models.BannerModel;
-import pro.vteam.freemarket.models.BigPromotionBannerModel;
 import pro.vteam.freemarket.models.HomeBanner;
 import pro.vteam.freemarket.models.HomeBigPromotionBanner;
 import pro.vteam.freemarket.models.HomeComponent;
 import pro.vteam.freemarket.models.HomeItem;
 import pro.vteam.freemarket.models.HomeOneRowBanners;
 import pro.vteam.freemarket.models.HomeOneRowItems;
+import pro.vteam.freemarket.utils.CustomItemDecoration;
 
 
 public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -66,7 +61,8 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 View view = LayoutInflater.from(context).inflate(R.layout.model_one_row_banners, parent, false);
                 return new OneRowBannersViewHolder(view);
             }
-            default:  View view=LayoutInflater.from(context).inflate(R.layout.model_unsuported_component,parent,false);
+            default:
+                View view = LayoutInflater.from(context).inflate(R.layout.model_unsuported_component, parent, false);
                 return new UnSupportedComponentViewHolder(view);
         }
 
@@ -97,7 +93,8 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 ((OneRowItemsViewHolder) holder).setData(oneRowItems);
                 break;
 
-           default: ((UnSupportedComponentViewHolder)holder).txt_description.setText("این کامپوننت ساپورت نمی شود لطفا اپلیکیشن را آپدیت کنید.");
+            default:
+                ((UnSupportedComponentViewHolder) holder).txt_description.setText("این کامپوننت ساپورت نمی شود لطفا اپلیکیشن را آپدیت کنید.");
 
 
         }
@@ -137,6 +134,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         ImageView img_promotion_icon;
         TextView txt_promotion_name;
         Button btn_install;
+        ConstraintLayout bigPromotionConstraintLayout;
 
         BigPromotionBannerViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -145,21 +143,31 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             img_promotion_icon = itemView.findViewById(R.id.img_promotion_icon);
             txt_promotion_name = itemView.findViewById(R.id.txt_promotion_name);
             btn_install = itemView.findViewById(R.id.btn_install);
+            bigPromotionConstraintLayout = itemView.findViewById(R.id.bid_promotion_constraintLayout);
 
         }
 
 
         void setData(HomeBigPromotionBanner bigPromotionBanner) {
 
-            if(bigPromotionBanner.getHomeImage().getPath() != null) {
+
+            ((ConstraintLayout.LayoutParams) img_promotion_banner.getLayoutParams()).dimensionRatio
+                    = bigPromotionBanner.getHomeImage().getRatio().getConstraintDimensionRatio();
+            if (bigPromotionBanner.getHomeImage().getPath() != null) {
                 Glide.with(context)
                         .load(bigPromotionBanner.getHomeImage().getPath())
+                        .centerCrop()
                         .into(img_promotion_banner);
             }
 
+
+            ((ConstraintLayout.LayoutParams) img_promotion_icon.getLayoutParams()).dimensionRatio
+                    = bigPromotionBanner.getHomeItem().getHomeIcon().getRatio().getConstraintDimensionRatio();
             Glide.with(context)
                     .load(bigPromotionBanner.getHomeItem().getHomeIcon().getPath())
+                    .centerCrop()
                     .into(img_promotion_icon);
+
             txt_promotion_name.setText(bigPromotionBanner.getHomeItem().getTitle());
 
         }
@@ -170,12 +178,15 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
         TextView bannerTitle;
         RecyclerView bannerRecycler;
+        CustomItemDecoration customItemDecoration;
 
 
         OneRowBannersViewHolder(@NonNull View itemView) {
             super(itemView);
             bannerTitle = itemView.findViewById(R.id.txt_banner_title);
             bannerRecycler = itemView.findViewById(R.id.banner_recycler);
+            if (customItemDecoration == null)
+                setCustomItemDecoration(new CustomItemDecoration(context.getResources().getDimension(R.dimen.recycler_horizontal_margin)));
 
         }
 
@@ -185,8 +196,14 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             bannerTitle.setText(oneRowBanners.getTitle());
             ArrayList<HomeBanner> bannerList = oneRowBanners.getBanners();
             BannerAdapter bannerAdapter = new BannerAdapter(context, bannerList);
-            bannerRecycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+            bannerRecycler.setLayoutManager(linearLayoutManager);
             bannerRecycler.setAdapter(bannerAdapter);
+        }
+
+        void setCustomItemDecoration(CustomItemDecoration customItemDecoration) {
+            this.customItemDecoration = customItemDecoration;
+            bannerRecycler.addItemDecoration(customItemDecoration);
         }
 
 
@@ -195,35 +212,45 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
     public class OneRowItemsViewHolder extends RecyclerView.ViewHolder {
 
-        TextView appsTitle;
-        RecyclerView appRecycler;
+        TextView itemsTitle;
+        RecyclerView itemsRecycler;
+        CustomItemDecoration customItemDecoration;
 
         OneRowItemsViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            appsTitle = itemView.findViewById(R.id.txt_app_title);
-            appRecycler = itemView.findViewById(R.id.app_recycler);
+            itemsTitle = itemView.findViewById(R.id.txt_items_title);
+            itemsRecycler = itemView.findViewById(R.id.item_recycler);
+            if (customItemDecoration == null)
+                setCustomItemDecoration(new CustomItemDecoration(context.getResources().getDimension(R.dimen.recycler_horizontal_margin)));
         }
 
         void setData(HomeOneRowItems oneRowItems) {
-            appsTitle.setText(oneRowItems.getTitle());
+            itemsTitle.setText(oneRowItems.getTitle());
             ArrayList<HomeItem> items = oneRowItems.getItems();
             ItemAdapter itemAdapter = new ItemAdapter(context, items);
-            appRecycler.setLayoutManager(new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false));
-            appRecycler.setAdapter(itemAdapter);
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
+            itemsRecycler.setLayoutManager(linearLayoutManager);
+            itemsRecycler.setAdapter(itemAdapter);
         }
 
+        void setCustomItemDecoration(CustomItemDecoration customItemDecoration) {
+            this.customItemDecoration = customItemDecoration;
+            itemsRecycler.addItemDecoration(customItemDecoration);
+        }
     }
 
-    public static class UnSupportedComponentViewHolder extends RecyclerView.ViewHolder{
+    public static class UnSupportedComponentViewHolder extends RecyclerView.ViewHolder {
 
         TextView txt_description;
-         UnSupportedComponentViewHolder(@NonNull View itemView) {
+
+        UnSupportedComponentViewHolder(@NonNull View itemView) {
             super(itemView);
-            txt_description=itemView.findViewById(R.id.txt_description);
+            txt_description = itemView.findViewById(R.id.txt_description);
         }
 
     }
+
 
 }
 

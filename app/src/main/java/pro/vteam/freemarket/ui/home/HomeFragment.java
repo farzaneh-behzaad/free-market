@@ -16,9 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 
+import pro.vteam.freemarket.Constant;
 import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.adapter.ComponentRecyclerAdapter;
 import pro.vteam.freemarket.models.HomeComponent;
+import pro.vteam.freemarket.utils.CustomItemDecoration;
 
 public class HomeFragment extends Fragment {
 
@@ -35,6 +37,7 @@ public class HomeFragment extends Fragment {
             public void onChanged(ArrayList<HomeComponent> homeComponents) {
 
                 ComponentRecyclerAdapter componentRecyclerAdapter=new ComponentRecyclerAdapter(getContext(),homeComponents);
+                homeRecycler.addItemDecoration(new CustomItemDecoration(getResources().getDimension(R.dimen.recycler_vertical_margin)));
                 homeRecycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
                 homeRecycler.setAdapter(componentRecyclerAdapter);
 

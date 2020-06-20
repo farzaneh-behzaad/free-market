@@ -6,4 +6,5 @@ public class Constant {
     public static final int ONE_ROW_BANNERS=1;
     public static final int ONE_ROW_ITEMS=2;
     public static final int UN_SUPPORTED_COMPONENT=-1;
+    public static final int RECYCLER_ITEMS_MARGIN=24;
 }

@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
@@ -21,7 +22,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder
     private ArrayList<HomeBanner> list;
 
 
-    public BannerAdapter(Context context, ArrayList<HomeBanner> list){
+    BannerAdapter(Context context, ArrayList<HomeBanner> list){
         this.context= context;
         this.list=list;
 
@@ -35,7 +36,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder
 
 
         View view= LayoutInflater.from(parent.getContext()).inflate(R.layout.model_banner,parent,false);
-        BannerAdapter.viewHolder viewHolder=new BannerAdapter.viewHolder(view);
+        BannerAdapter.viewHolder viewHolder= new viewHolder(view);
         viewHolder.bannerImage =view.findViewById(R.id.img_banner);
 
         return viewHolder;
@@ -43,9 +44,14 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
+
         HomeBanner item = list.get(position);
+
+        ((ConstraintLayout.LayoutParams) holder.bannerImage.getLayoutParams()).dimensionRatio
+                =item.getHomeImage().getRatio().getConstraintDimensionRatio();
         Glide.with(context)
                 .load(item.getHomeImage().getPath())
+                .centerCrop()
                 .into(holder.bannerImage);
 
 
@@ -57,12 +63,12 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder
         return list.size();
     }
 
-    public class viewHolder extends RecyclerView.ViewHolder{
+    static class viewHolder extends RecyclerView.ViewHolder{
 
         private ImageView bannerImage;
 
 
-        public viewHolder(@NonNull View itemView) {
+        viewHolder(@NonNull View itemView) {
             super(itemView);
             bannerImage = itemView.findViewById(R.id.img_banner);
 

@@ -2,10 +2,12 @@
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bid_promotion_constraintLayout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:padding="@dimen/layout_padding">
+    android:paddingStart="@dimen/recycler_horizontal_margin"
+    android:paddingEnd="@dimen/recycler_horizontal_margin"
+      >
 
 
     <androidx.appcompat.widget.AppCompatImageView
@@ -17,51 +19,46 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:scaleType="fitXY"
+
+
         />
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="48dp"
-        android:background="@color/darkGray"
-        android:orientation="horizontal"
-        android:paddingStart="2dp"
-        android:paddingEnd="2dp"
-        app:layout_constraintBottom_toBottomOf="parent">
+        android:background="#C3E41414"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
 
 
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_promotion_icon"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:src="@drawable/p1" />
-
-        <androidx.appcompat.widget.LinearLayoutCompat
             android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="0.5"
-            android:gravity="center"
-            android:orientation="horizontal">
+            android:layout_height="0dp"
+            android:src="@drawable/p1"
+            app:layout_constraintDimensionRatio="1:1"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintWidth_max="48dp"
+            app:layout_constraintHeight_max="48dp"/>
 
 
-            <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txt_promotion_name"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/start_margin"
-                android:layout_marginEnd="@dimen/start_margin"
-                android:ellipsize="end"
-                android:singleLine="true"
-                android:text="بازی پیشنهادی برای شما"
-                android:textColor="#FFFF" />
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_promotion_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/start_margin"
+            android:layout_marginEnd="@dimen/start_margin"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="بازی پیشنهادی برای شما"
+            android:textColor="#FFFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/img_promotion_icon"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            <View
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights" />
-
-        </androidx.appcompat.widget.LinearLayoutCompat>
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_install"
@@ -70,10 +67,12 @@
             android:layout_height="wrap_content"
             android:backgroundTint="#fff"
             android:text="نصب"
-            android:textColor="@color/textColor" />
+            android:textColor="@color/textColor"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
