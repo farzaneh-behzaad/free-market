@@ -12,9 +12,11 @@
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:text="بازه های پیشنهادی برای شما"
+        app:layout_constraintBottom_toTopOf="@id/banner_recycler"
+        android:text="بازی های پیشنهادی برای شما"
         android:textColor="@color/textColor"
-        android:layout_marginStart="@dimen/start_margin"
+        android:layout_marginStart="@dimen/recycler_horizontal_margin"
+        android:layout_marginBottom="@dimen/title_margin"
         android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView
