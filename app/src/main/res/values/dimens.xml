@@ -7,4 +7,6 @@
     <dimen name="app_padding">8dp</dimen>
     <dimen name="recycler_horizontal_margin">12dp</dimen>
     <dimen name="recycler_vertical_margin">18dp</dimen>
+    <dimen name="one_row_items_title_text_size">11sp</dimen>
+    <dimen name="one_row_items_price_text_size">11sp</dimen>
 </resources>
