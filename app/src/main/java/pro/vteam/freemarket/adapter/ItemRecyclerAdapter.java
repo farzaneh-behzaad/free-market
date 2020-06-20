@@ -111,8 +111,8 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
         public BigPromotionViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            img_promotion_banner = itemView.findViewById(R.id.img_promotion_banner);
-            img_promotion_icon = itemView.findViewById(R.id.img_promotion_icon);
+            img_promotion_banner = itemView.findViewById(R.id.img_bigPromotionBanner);
+            img_promotion_icon = itemView.findViewById(R.id.img_bigPromotionIcon);
             txt_promotion_name = itemView.findViewById(R.id.txt_promotion_name);
             btn_install = itemView.findViewById(R.id.btn_inlineAction);
 

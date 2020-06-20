@@ -1,6 +1,7 @@
 package pro.vteam.freemarket.adapter;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -136,22 +138,34 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         ImageView img_promotion_banner;
         ImageView img_promotion_icon;
         TextView txt_promotion_name;
+        TextView txt_bigPromotionTag;
         Button btn_install;
-        ConstraintLayout bigPromotionConstraintLayout;
+        LinearLayoutCompat bigPromotionTagLayout;
+
+
 
         BigPromotionBannerViewHolder(@NonNull View itemView) {
             super(itemView);
-
-            img_promotion_banner = itemView.findViewById(R.id.img_promotion_banner);
-            img_promotion_icon = itemView.findViewById(R.id.img_promotion_icon);
+            txt_bigPromotionTag = itemView.findViewById(R.id.txt_bigPromotionTag);
+            img_promotion_banner = itemView.findViewById(R.id.img_bigPromotionBanner);
+            img_promotion_icon = itemView.findViewById(R.id.img_bigPromotionIcon);
             txt_promotion_name = itemView.findViewById(R.id.txt_promotion_name);
             btn_install = itemView.findViewById(R.id.btn_inlineAction);
-            bigPromotionConstraintLayout = itemView.findViewById(R.id.bid_promotion_constraintLayout);
+            bigPromotionTagLayout=itemView.findViewById(R.id.tag_linearLayout);
+
 
         }
 
 
         void setData(HomeBigPromotionBanner bigPromotionBanner) {
+
+
+            if (bigPromotionBanner.getHomeTag().equals("") || bigPromotionBanner.getHomeTag() == null) {
+                txt_bigPromotionTag.setVisibility(View.GONE);
+            } else {
+                txt_bigPromotionTag.setText(bigPromotionBanner.getHomeTag().getTitle());
+                bigPromotionTagLayout.setBackgroundColor(Color.parseColor(bigPromotionBanner.getHomeTag().getBackgroundColor()));
+            }
 
 
             ((ConstraintLayout.LayoutParams) img_promotion_banner.getLayoutParams()).dimensionRatio
@@ -168,8 +182,8 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                     = bigPromotionBanner.getHomeItem().getHomeIcon().getRatio().getConstraintDimensionRatio();
 
 
-            int roundRadius =(int) context.getResources().getDimension(R.dimen.big_promotion_banner_icon_corner_radius);
-            RequestOptions requestOptions = new RequestOptions().transform(new CenterCrop(),new RoundedCorners(roundRadius));
+            int roundRadius = (int) context.getResources().getDimension(R.dimen.big_promotion_banner_icon_corner_radius);
+            RequestOptions requestOptions = new RequestOptions().transform(new CenterCrop(), new RoundedCorners(roundRadius));
 
 
             Glide.with(context)
