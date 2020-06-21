@@ -17,7 +17,7 @@
         android:textColor="@color/textColor"
         android:layout_marginStart="@dimen/recycler_horizontal_margin"
         android:layout_marginEnd="@dimen/recycler_horizontal_margin"
-        android:paddingBottom="@dimen/title_margin"
+        android:paddingBottom="@dimen/title_recycler_margin"
         android:textStyle="bold"/>
 
     <androidx.recyclerview.widget.RecyclerView

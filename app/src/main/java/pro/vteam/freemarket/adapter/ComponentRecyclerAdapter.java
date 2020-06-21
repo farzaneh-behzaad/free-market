@@ -28,6 +28,7 @@ import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.models.HomeBanner;
 import pro.vteam.freemarket.models.HomeBigPromotionBanner;
 import pro.vteam.freemarket.models.HomeComponent;
+import pro.vteam.freemarket.models.HomeInlineAction;
 import pro.vteam.freemarket.models.HomeItem;
 import pro.vteam.freemarket.models.HomeOneRowBanners;
 import pro.vteam.freemarket.models.HomeOneRowItems;
@@ -143,7 +144,6 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         LinearLayoutCompat bigPromotionTagLayout;
 
 
-
         BigPromotionBannerViewHolder(@NonNull View itemView) {
             super(itemView);
             txt_bigPromotionTag = itemView.findViewById(R.id.txt_bigPromotionTag);
@@ -151,7 +151,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             img_promotion_icon = itemView.findViewById(R.id.img_bigPromotionIcon);
             txt_promotion_name = itemView.findViewById(R.id.txt_promotion_name);
             btn_install = itemView.findViewById(R.id.btn_inlineAction);
-            bigPromotionTagLayout=itemView.findViewById(R.id.tag_linearLayout);
+            bigPromotionTagLayout = itemView.findViewById(R.id.tag_linearLayout);
 
 
         }
@@ -216,7 +216,12 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
         void setData(HomeOneRowBanners oneRowBanners) {
 
-            bannerTitle.setText(oneRowBanners.getTitle());
+            if (oneRowBanners.getTitle() == null || oneRowBanners.getTitle().equals("")) {
+                bannerTitle.setVisibility(View.GONE);
+            } else {
+                bannerTitle.setText(oneRowBanners.getTitle());
+            }
+
             ArrayList<HomeBanner> bannerList = oneRowBanners.getBanners();
             BannerAdapter bannerAdapter = new BannerAdapter(context, bannerList);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
@@ -236,12 +241,17 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
     public class OneRowItemsViewHolder extends RecyclerView.ViewHolder {
 
         TextView itemsTitle;
+        TextView txt_oneRowItemsInlineAction;
+        ImageView icon_oneRowItemsInlineAction;
         RecyclerView itemsRecycler;
         CustomItemDecoration customItemDecoration;
+        ConstraintLayout ConstraintLayout_title;
 
         OneRowItemsViewHolder(@NonNull View itemView) {
             super(itemView);
-
+            ConstraintLayout_title = itemView.findViewById(R.id.txt_titleConstraintLayout);
+            txt_oneRowItemsInlineAction = itemView.findViewById(R.id.txt_oneRowItemsInlineAction);
+            icon_oneRowItemsInlineAction = itemView.findViewById(R.id.icon_oneRowItemsInlineAction);
             itemsTitle = itemView.findViewById(R.id.txt_items_title);
             itemsRecycler = itemView.findViewById(R.id.item_recycler);
             if (customItemDecoration == null)
@@ -249,7 +259,28 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         }
 
         void setData(HomeOneRowItems oneRowItems) {
-            itemsTitle.setText(oneRowItems.getTitle());
+
+            String oneRowItemsTitle = oneRowItems.getTitle();
+            HomeInlineAction oneRowItemsInlineAction = oneRowItems.getHomeInlineAction();
+
+            if ((oneRowItemsTitle == null || oneRowItemsTitle.equals("")) && oneRowItemsInlineAction == null) {
+                ConstraintLayout_title.setVisibility(View.GONE);
+
+            } else if (oneRowItemsTitle == null || oneRowItemsTitle.equals("")) {
+                itemsTitle.setVisibility(View.GONE);
+                txt_oneRowItemsInlineAction.setText(oneRowItems.getHomeInlineAction().getTitle());
+
+            } else if (oneRowItemsInlineAction == null) {
+                icon_oneRowItemsInlineAction.setVisibility(View.GONE);
+                txt_oneRowItemsInlineAction.setVisibility(View.GONE);
+                itemsTitle.setText(oneRowItems.getTitle());
+            } else {
+
+                itemsTitle.setText(oneRowItems.getTitle());
+                txt_oneRowItemsInlineAction.setText(oneRowItems.getHomeInlineAction().getTitle());
+            }
+
+
             ArrayList<HomeItem> items = oneRowItems.getItems();
             ItemAdapter itemAdapter = new ItemAdapter(context, items);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);

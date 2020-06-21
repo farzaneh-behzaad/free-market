@@ -9,13 +9,14 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/title_constraintLayout"
+            android:id="@+id/txt_titleConstraintLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
+            android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toTopOf="@+id/item_recycler">
+            app:layout_constraintEnd_toEndOf="parent"
+            android:paddingBottom="@dimen/title_recycler_margin"
+            >
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/txt_items_title"
@@ -27,26 +28,26 @@
                 android:text="بازی های پیشنهادی برای شما"
                 android:textColor="@color/textColor"
                 android:layout_marginStart="@dimen/recycler_horizontal_margin"
-                android:layout_marginBottom="@dimen/title_margin"
                 android:textStyle="bold"/>
 
             <com.google.android.material.textview.MaterialTextView
-                android:id="@+id/txt_more"
+                android:id="@+id/txt_oneRowItemsInlineAction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toStartOf="@id/icon_more"
+                app:layout_constraintEnd_toStartOf="@id/icon_oneRowItemsInlineAction"
                 app:layout_constraintTop_toTopOf="parent"
                 android:text="بیشتر"
 
                 />
 
             <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/icon_more"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:id="@+id/icon_oneRowItemsInlineAction"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/txt_more"
+                app:layout_constraintStart_toEndOf="@id/txt_oneRowItemsInlineAction"
                 app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
                 android:src="@drawable/ic_keyboard_arrow_left_gray_24dp"
                 android:layout_marginEnd="@dimen/recycler_horizontal_margin"
                 />
@@ -57,9 +58,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/item_recycler"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/title_constraintLayout"
+        app:layout_constraintTop_toBottomOf="@id/txt_titleConstraintLayout"
         app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
