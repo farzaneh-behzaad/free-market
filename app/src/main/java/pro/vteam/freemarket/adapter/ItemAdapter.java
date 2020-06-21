@@ -62,6 +62,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder>{
             holder.txtTag.setVisibility(View.GONE);
         }else {holder.txtTag.setText(item.getTag().getTitle());
           holder.tagCardView.setCardBackgroundColor(Color.parseColor(item.getTag().getBackgroundColor()));
+          holder.txtTag.setTextColor(Color.parseColor(item.getTag().getTextColor()));
         }
 
         ((ConstraintLayout.LayoutParams) holder.itemIcon.getLayoutParams()).dimensionRatio

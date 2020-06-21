@@ -2,8 +2,6 @@ package pro.vteam.freemarket.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
 public class
 
 HomeBigPromotionBanner {
@@ -16,6 +14,9 @@ HomeBigPromotionBanner {
         private  HomeInlineAction homeInlineAction;
         @SerializedName("tag")
         private HomeTag homeTag;
+
+        @SerializedName("actionbar")
+        private HomeActionbar homeActionbar;
 
         public HomeImage getHomeImage() {
             return homeImage;
@@ -32,5 +33,9 @@ HomeBigPromotionBanner {
         public HomeTag getHomeTag() {
             return homeTag;
         }
+
+        public HomeActionbar getHomeActionbar() {
+        return homeActionbar;
     }
+}
 

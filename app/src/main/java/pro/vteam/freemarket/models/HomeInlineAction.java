@@ -10,6 +10,13 @@ public class HomeInlineAction {
     @SerializedName("link")
     private String link;
 
+    @SerializedName("backgroundColor")
+    private String backgroundColor;
+
+    @SerializedName("textColor")
+    private String textColor;
+
+
 
     public String getTitle() {
         return title;
@@ -17,5 +24,13 @@ public class HomeInlineAction {
 
     public String getLink() {
         return link;
+    }
+
+    public String getBackgroundColor() {
+        return backgroundColor;
+    }
+
+    public String getTextColor() {
+        return textColor;
     }
 }

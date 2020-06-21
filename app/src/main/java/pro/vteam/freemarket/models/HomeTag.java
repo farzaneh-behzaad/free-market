@@ -9,6 +9,8 @@ public class HomeTag {
     private String title;
     @SerializedName("backgroundColor")
     private String backgroundColor;
+    @SerializedName("textColor")
+    private String textColor;
 
 
     public String getTitle() {
@@ -17,5 +19,9 @@ public class HomeTag {
 
     public String getBackgroundColor() {
         return backgroundColor;
+    }
+
+    public String getTextColor() {
+        return textColor;
     }
 }

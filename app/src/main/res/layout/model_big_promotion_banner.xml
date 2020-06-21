@@ -15,6 +15,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.25"/>
+
         <androidx.appcompat.widget.AppCompatImageView
             android:id="@+id/img_bigPromotionBanner"
             android:layout_width="0dp"
@@ -32,11 +40,11 @@
             android:layout_height="wrap_content"
             android:background="@color/lightGray"
             android:padding="2dp"
-            app:layout_constraintBottom_toTopOf="@id/itemConstraint"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/img_bigPromotionBanner">
+            app:layout_constraintTop_toBottomOf="@id/guideline">
 
             <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_bullet"
                 android:layout_width="14dp"
                 android:layout_height="14dp"
                 android:layout_gravity="center_vertical"
@@ -52,13 +60,15 @@
                 android:text=" رایگان شد"
                 android:layout_gravity="center_vertical"
                 android:textSize="@dimen/big_promotion_banner_tag_text_size"
+                android:paddingLeft="4dp"
+                android:paddingRight="4dp"
                 android:textColor="@color/white" />
 
         </androidx.appcompat.widget.LinearLayoutCompat>
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/itemConstraint"
+            android:id="@+id/actionbarConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="#C3E41414"
@@ -104,7 +114,7 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="#fff"
                 android:text="نصب"
-                android:textColor="@color/textColor"
+                android:textColor="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

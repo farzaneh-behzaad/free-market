@@ -140,8 +140,10 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         ImageView img_promotion_icon;
         TextView txt_promotion_name;
         TextView txt_bigPromotionTag;
-        Button btn_install;
+        Button btn_inlineAction;
+        ImageView img_bullet;
         LinearLayoutCompat bigPromotionTagLayout;
+        ConstraintLayout actionbarConstraintLayout;
 
 
         BigPromotionBannerViewHolder(@NonNull View itemView) {
@@ -150,8 +152,11 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             img_promotion_banner = itemView.findViewById(R.id.img_bigPromotionBanner);
             img_promotion_icon = itemView.findViewById(R.id.img_bigPromotionIcon);
             txt_promotion_name = itemView.findViewById(R.id.txt_promotion_name);
-            btn_install = itemView.findViewById(R.id.btn_inlineAction);
+            btn_inlineAction = itemView.findViewById(R.id.btn_inlineAction);
             bigPromotionTagLayout = itemView.findViewById(R.id.tag_linearLayout);
+            img_bullet = itemView.findViewById(R.id.img_bullet);
+            actionbarConstraintLayout = itemView.findViewById(R.id.actionbarConstraintLayout);
+
 
 
         }
@@ -163,10 +168,13 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             if (bigPromotionBanner.getHomeTag().equals("") || bigPromotionBanner.getHomeTag() == null) {
                 txt_bigPromotionTag.setVisibility(View.GONE);
             } else {
+                txt_bigPromotionTag.setTextColor(Color.parseColor(bigPromotionBanner.getHomeTag().getTextColor()));
                 txt_bigPromotionTag.setText(bigPromotionBanner.getHomeTag().getTitle());
                 bigPromotionTagLayout.setBackgroundColor(Color.parseColor(bigPromotionBanner.getHomeTag().getBackgroundColor()));
             }
-
+            btn_inlineAction.setTextColor(Color.parseColor(bigPromotionBanner.getHomeInlineAction().getTextColor()));
+            btn_inlineAction.setBackgroundColor(Color.parseColor(bigPromotionBanner.getHomeInlineAction().getBackgroundColor()));
+            actionbarConstraintLayout.setBackgroundColor(Color.parseColor(bigPromotionBanner.getHomeActionbar().getBackgroundColor()));
 
             ((ConstraintLayout.LayoutParams) img_promotion_banner.getLayoutParams()).dimensionRatio
                     = bigPromotionBanner.getHomeImage().getRatio().getConstraintDimensionRatio();

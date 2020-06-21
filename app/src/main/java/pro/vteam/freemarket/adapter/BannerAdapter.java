@@ -55,6 +55,7 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder
         }
         else {
             holder.txt_bannerTag.setText(item.getHomeTag().getTitle());
+            holder.txt_bannerTag.setTextColor(Color.parseColor(item.getHomeTag().getTextColor()));
             holder.txt_bannerTag.setBackgroundColor(Color.parseColor(item.getHomeTag().getBackgroundColor()));
 
         }
