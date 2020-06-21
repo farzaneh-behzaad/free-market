@@ -15,5 +15,8 @@
     <dimen name="big_promotion_banner_corner_radius">8dp</dimen>
     <dimen name="big_promotion_banner_tag_text_size">12sp</dimen>
     <dimen name="one_row_items_recycler_padding">3dp</dimen>
+    <dimen name="line_space_extra">4dp</dimen>
+
+
 
 </resources>
