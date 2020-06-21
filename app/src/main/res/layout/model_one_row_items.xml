@@ -9,13 +9,16 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/txt_titleConstraintLayout"
+            android:id="@+id/titleConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            android:paddingBottom="@dimen/title_recycler_margin"
+            android:padding="8dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackground"
             >
 
             <com.google.android.material.textview.MaterialTextView
@@ -60,7 +63,9 @@
         android:id="@+id/item_recycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txt_titleConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@id/titleConstraintLayout"
+        android:paddingTop="@dimen/one_row_items_recycler_padding"
+        android:paddingBottom="@dimen/one_row_items_recycler_padding"
         app:layout_constraintStart_toStartOf="parent"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

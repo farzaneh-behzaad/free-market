@@ -249,7 +249,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
         OneRowItemsViewHolder(@NonNull View itemView) {
             super(itemView);
-            ConstraintLayout_title = itemView.findViewById(R.id.txt_titleConstraintLayout);
+            ConstraintLayout_title = itemView.findViewById(R.id.titleConstraintLayout);
             txt_oneRowItemsInlineAction = itemView.findViewById(R.id.txt_oneRowItemsInlineAction);
             icon_oneRowItemsInlineAction = itemView.findViewById(R.id.icon_oneRowItemsInlineAction);
             itemsTitle = itemView.findViewById(R.id.txt_items_title);
@@ -274,10 +274,16 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 icon_oneRowItemsInlineAction.setVisibility(View.GONE);
                 txt_oneRowItemsInlineAction.setVisibility(View.GONE);
                 itemsTitle.setText(oneRowItems.getTitle());
+                ConstraintLayout_title.setClickable(false);
+                ConstraintLayout_title.setFocusable(false);
+
             } else {
 
                 itemsTitle.setText(oneRowItems.getTitle());
                 txt_oneRowItemsInlineAction.setText(oneRowItems.getHomeInlineAction().getTitle());
+//                TypedValue outValue = new TypedValue();
+//                context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
+//                ConstraintLayout_title.setBackgroundResource(outValue.resourceId);
             }
 
 
