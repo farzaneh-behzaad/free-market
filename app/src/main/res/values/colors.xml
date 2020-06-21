@@ -7,5 +7,6 @@
     <color name="lightGray">#bfbfbf</color>
     <color name="white">#ffff</color>
     <color name="textColor">#000000</color>
+    <color name="tagRed">#D21f3c</color>
 
 </resources>

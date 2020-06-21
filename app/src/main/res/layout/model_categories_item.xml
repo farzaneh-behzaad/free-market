@@ -39,7 +39,7 @@
         <View
             android:id="@+id/divider"
             android:layout_width="match_parent"
-            style="@style/divider"/>
+            style="@style/Divider"/>
 
     </LinearLayout>
 

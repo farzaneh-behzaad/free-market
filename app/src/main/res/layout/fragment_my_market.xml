@@ -19,7 +19,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:titleTextAppearance="@style/toolbarText"
+            app:titleTextAppearance="@style/ToolbarText"
             >
 
         </androidx.appcompat.widget.Toolbar>
@@ -28,7 +28,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
-        style="@style/divider"
+        style="@style/Divider"
         android:layout_marginStart="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/appBarLayout"
         />
@@ -80,7 +80,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         app:layout_constraintBottom_toBottomOf="@+id/userConstraintLayout"
-        style="@style/divider"
+        style="@style/Divider"
         android:layout_marginStart="0dp"
         />
 
@@ -96,7 +96,7 @@
     <View
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
-        style="@style/divider"
+        style="@style/Divider"
         android:layout_marginStart="0dp"
         app:layout_constraintBottom_toBottomOf="@+id/tab_layout"
         />

@@ -50,7 +50,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         app:layout_constraintBottom_toBottomOf="@id/constraint_layout1"
-        style="@style/divider"/>
+        style="@style/Divider"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout2"
@@ -95,7 +95,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         app:layout_constraintBottom_toBottomOf="@id/constraint_layout2"
-        style="@style/divider"/>
+        style="@style/Divider"/>
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -141,7 +141,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         app:layout_constraintBottom_toBottomOf="@id/constraint_layout3"
-        style="@style/divider"/>
+        style="@style/Divider"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout4"
@@ -186,7 +186,7 @@
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         app:layout_constraintBottom_toBottomOf="@id/constraint_layout4"
-        style="@style/divider"/>
+        style="@style/Divider"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraint_layout5"
@@ -232,6 +232,6 @@
         android:layout_width="match_parent"
         android:layout_height="0.2dp"
         app:layout_constraintBottom_toBottomOf="@id/constraint_layout5"
-        style="@style/divider"/>
+        style="@style/Divider"/>
 
 </androidx.appcompat.widget.LinearLayoutCompat>

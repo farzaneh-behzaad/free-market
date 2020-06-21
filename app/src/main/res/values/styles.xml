@@ -22,16 +22,22 @@
     </style>
 
 
-    <style name="divider" >
+    <style name="Divider" >
         <item name="android:layout_height">0.01dp</item>
         <item name="android:layout_gravity">center</item>
         <item name="android:layout_marginStart">38dp</item>
         <item name="android:background">@color/colorPrimaryDark</item>
     </style>
 
-    <style name="toolbarText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
+    <style name="ToolbarText" parent="TextAppearance.AppCompat.Widget.ActionBar.Title">
         <item name="android:textColor">@color/textColor</item>
         <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="ItemTagStyle" parent="Widget.MaterialComponents.TextView">
+        <item name="android:textColor">#FFFFFF</item>
+        <item name="android:background">@color/tagRed</item>
+        <item name="cornerRadius">24dp</item>
     </style>
 
 

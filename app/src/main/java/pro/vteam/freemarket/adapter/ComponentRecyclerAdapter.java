@@ -281,9 +281,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
                 itemsTitle.setText(oneRowItems.getTitle());
                 txt_oneRowItemsInlineAction.setText(oneRowItems.getHomeInlineAction().getTitle());
-//                TypedValue outValue = new TypedValue();
-//                context.getTheme().resolveAttribute(android.R.attr.selectableItemBackground, outValue, true);
-//                ConstraintLayout_title.setBackgroundResource(outValue.resourceId);
+
             }
 
 
