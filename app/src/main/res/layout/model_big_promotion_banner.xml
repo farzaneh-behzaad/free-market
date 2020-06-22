@@ -114,7 +114,7 @@
                 android:layout_height="match_parent"
                 android:backgroundTint="#fff"
                 android:text="نصب"
-                android:textColor="@color/white"
+                android:textColor="@color/textColor"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

@@ -2,9 +2,7 @@ package pro.vteam.freemarket.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class
-
-HomeBigPromotionBanner {
+public class HomeBigPromotionBanner {
 
         @SerializedName("image")
         private HomeImage homeImage;

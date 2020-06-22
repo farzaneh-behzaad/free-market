@@ -30,6 +30,7 @@ import pro.vteam.freemarket.models.HomeBigPromotionBanner;
 import pro.vteam.freemarket.models.HomeComponent;
 import pro.vteam.freemarket.models.HomeInlineAction;
 import pro.vteam.freemarket.models.HomeItem;
+import pro.vteam.freemarket.models.HomeLinkVerticalCollection;
 import pro.vteam.freemarket.models.HomeOneRowBanners;
 import pro.vteam.freemarket.models.HomeOneRowItems;
 import pro.vteam.freemarket.utils.CustomItemDecoration;
@@ -67,6 +68,11 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 View view = LayoutInflater.from(context).inflate(R.layout.model_one_row_banners, parent, false);
                 return new OneRowBannersViewHolder(view);
             }
+
+            case Constant.LINK_VERTICAL_COLLECTION: {
+                View view = LayoutInflater.from(context).inflate(R.layout.model_link_vertical_collection, parent, false);
+                return new LinkVerticalCollectionViewHolder(view);
+            }
             default:
                 View view = LayoutInflater.from(context).inflate(R.layout.model_unsuported_component, parent, false);
                 return new UnSupportedComponentViewHolder(view);
@@ -99,6 +105,12 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 ((OneRowItemsViewHolder) holder).setData(oneRowItems);
                 break;
 
+            case Constant.LINK_VERTICAL_COLLECTION:
+                String jsonLinkObject = gson.toJson(list.get(position).getObject());
+                HomeLinkVerticalCollection linkVerticalCollection = gson.fromJson(jsonLinkObject,HomeLinkVerticalCollection.class);
+                ((LinkVerticalCollectionViewHolder) holder).setData(linkVerticalCollection);
+                break;
+
             default:
                 ((UnSupportedComponentViewHolder) holder).txt_description.setText("این کامپوننت ساپورت نمی شود لطفا اپلیکیشن را آپدیت کنید.");
 
@@ -120,6 +132,10 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
             case "BigPromotionBanner":
                 return Constant.BIG_PROMOTION_BANNER;
+
+            case "LinkVerticalCollection":
+                return Constant.LINK_VERTICAL_COLLECTION;
+
             default:
                 return Constant.UN_SUPPORTED_COMPONENT;
         }
@@ -158,7 +174,6 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             actionbarConstraintLayout = itemView.findViewById(R.id.actionbarConstraintLayout);
 
 
-
         }
 
 
@@ -171,6 +186,8 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 txt_bigPromotionTag.setTextColor(Color.parseColor(bigPromotionBanner.getHomeTag().getTextColor()));
                 txt_bigPromotionTag.setText(bigPromotionBanner.getHomeTag().getTitle());
                 bigPromotionTagLayout.setBackgroundColor(Color.parseColor(bigPromotionBanner.getHomeTag().getBackgroundColor()));
+                img_bullet.setColorFilter(Color.argb(255, 255, 255, 255));
+                img_bullet.setColorFilter(Color.GREEN, android.graphics.PorterDuff.Mode.MULTIPLY);
             }
             btn_inlineAction.setTextColor(Color.parseColor(bigPromotionBanner.getHomeInlineAction().getTextColor()));
             btn_inlineAction.setBackgroundColor(Color.parseColor(bigPromotionBanner.getHomeInlineAction().getBackgroundColor()));
@@ -303,6 +320,32 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         void setCustomItemDecoration(CustomItemDecoration customItemDecoration) {
             this.customItemDecoration = customItemDecoration;
             itemsRecycler.addItemDecoration(customItemDecoration);
+        }
+    }
+
+    public class LinkVerticalCollectionViewHolder extends RecyclerView.ViewHolder {
+
+
+        TextView linksTitle;
+        TextView txt_moreAction;
+        RecyclerView linksRecycler;
+
+        public LinkVerticalCollectionViewHolder(@NonNull View itemView) {
+            super(itemView);
+            linksTitle = itemView.findViewById(R.id.title_links);
+            txt_moreAction = itemView.findViewById(R.id.txt_more_action);
+            linksRecycler = itemView.findViewById(R.id.recycler_links);
+        }
+
+
+        void setData(HomeLinkVerticalCollection linkVerticalCollection) {
+
+            linksTitle.setText(linkVerticalCollection.getTitle());
+            LinkAdapter linkAdapter = new LinkAdapter(context, linkVerticalCollection.getLinks());
+            LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
+            linksRecycler.setLayoutManager(linearLayoutManager);
+            linksRecycler.setAdapter(linkAdapter);
+
         }
     }
 
