@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
-import pro.vteam.freemarket.models.BannerModel;
+import pro.vteam.freemarket.oldModels.BannerModel;
 
 public class BannersAdapter extends RecyclerView.Adapter<BannersAdapter.viewHolder>{
     private Context context;

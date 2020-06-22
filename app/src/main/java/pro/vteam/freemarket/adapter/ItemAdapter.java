@@ -2,8 +2,6 @@ package pro.vteam.freemarket.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
-import android.graphics.ColorFilter;
-import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,19 +16,18 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
-import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
 
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
-import pro.vteam.freemarket.models.HomeItem;
+import pro.vteam.freemarket.models.Item;
 
 public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder>{
     private Context context;
-    private ArrayList<HomeItem> list;
+    private ArrayList<Item> list;
 
 
-     ItemAdapter(Context context, ArrayList<HomeItem> list){
+     ItemAdapter(Context context, ArrayList<Item> list){
         this.context= context;
         this.list=list;
 
@@ -55,7 +52,7 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder>{
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
-        HomeItem item = list.get(position);
+        Item item = list.get(position);
 
 
         if(item.getTag()==null){
@@ -66,10 +63,10 @@ public class ItemAdapter extends RecyclerView.Adapter<ItemAdapter.viewHolder>{
         }
 
         ((ConstraintLayout.LayoutParams) holder.itemIcon.getLayoutParams()).dimensionRatio
-                =item.getHomeIcon().getRatio().getConstraintDimensionRatio();
+                =item.getIcon().getRatio().getConstraintDimensionRatio();
 
         Glide.with(context)
-                .load(item.getHomeIcon().getPath())
+                .load(item.getIcon().getPath())
                 .centerCrop()
                 .into(holder.itemIcon);
 

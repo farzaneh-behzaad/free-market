@@ -18,7 +18,7 @@ import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.activities.CategoriesItemActivity;
 import pro.vteam.freemarket.adapter.CategoriesRecyclerAdapter;
 import pro.vteam.freemarket.interfaces.CategoriesItemsListener;
-import pro.vteam.freemarket.models.CategoriesItemModel;
+import pro.vteam.freemarket.oldModels.CategoriesItemModel;
 
 public class ProgramsGamesFragment extends Fragment {
 

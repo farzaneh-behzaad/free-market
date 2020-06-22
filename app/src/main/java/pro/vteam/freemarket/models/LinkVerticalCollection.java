@@ -4,18 +4,18 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class HomeLinkVerticalCollection {
+public class LinkVerticalCollection {
 
     @SerializedName("title")
     private String title;
     @SerializedName("maxCount")
     private int maxCount;
     @SerializedName("inlineAction")
-    private HomeInlineAction homeInlineAction;
+    private InlineAction inlineAction;
     @SerializedName("divider")
-    private HomeDivider homeDivider;
+    private Divider Divider;
     @SerializedName("links")
-    private ArrayList<HomeLink> links;
+    private ArrayList<Link> links;
 
 
     public String getTitle() {
@@ -26,15 +26,15 @@ public class HomeLinkVerticalCollection {
         return maxCount;
     }
 
-    public HomeInlineAction getHomeInlineAction() {
-        return homeInlineAction;
+    public InlineAction getInlineAction() {
+        return inlineAction;
     }
 
-    public HomeDivider getHomeDivider() {
-        return homeDivider;
+    public Divider getDivider() {
+        return Divider;
     }
 
-    public ArrayList<HomeLink> getLinks() {
+    public ArrayList<Link> getLinks() {
         return links;
     }
 }

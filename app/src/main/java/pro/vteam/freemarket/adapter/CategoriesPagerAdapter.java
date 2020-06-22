@@ -7,8 +7,7 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.fragments.ProgramsGamesFragment;
-import pro.vteam.freemarket.models.CategoriesTabListModel;
-import pro.vteam.freemarket.models.ItemModel;
+import pro.vteam.freemarket.oldModels.CategoriesTabListModel;
 
 public class CategoriesPagerAdapter extends FragmentPagerAdapter {
 

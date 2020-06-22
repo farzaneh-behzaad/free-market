@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
-import pro.vteam.freemarket.models.AppModel;
+import pro.vteam.freemarket.oldModels.AppModel;
 
 public class AppsAdapter extends RecyclerView.Adapter<AppsAdapter.viewHolder>{
     private Context context;

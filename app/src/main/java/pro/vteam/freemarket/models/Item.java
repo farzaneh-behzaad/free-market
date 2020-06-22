@@ -2,26 +2,26 @@ package pro.vteam.freemarket.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class HomeItem {
+public class Item {
 
 
     @SerializedName("link")
     private String link;
     @SerializedName("icon")
-    private HomeIcon homeIcon;
+    private Icon icon;
     @SerializedName("title")
     private String title;
     @SerializedName("price")
     private String price;
     @SerializedName("tag")
-    private HomeTag tag;
+    private Tag tag;
 
     public String getLink() {
         return link;
     }
 
-    public HomeIcon getHomeIcon() {
-        return homeIcon;
+    public Icon getIcon() {
+        return icon;
     }
 
     public String getTitle() {
@@ -32,7 +32,7 @@ public class HomeItem {
         return price;
     }
 
-    public HomeTag getTag() {
+    public Tag getTag() {
         return tag;
     }
 }

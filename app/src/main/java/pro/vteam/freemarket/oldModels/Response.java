@@ -1,7 +1,6 @@
-package pro.vteam.freemarket.models;
+package pro.vteam.freemarket.oldModels;
 
 import com.google.gson.annotations.SerializedName;
-
 
 
 public class Response {

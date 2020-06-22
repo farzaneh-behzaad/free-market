@@ -2,17 +2,17 @@ package pro.vteam.freemarket.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class HomeLink {
+public class Link {
 
 
     @SerializedName("icon")
-    private HomeIcon homeIcon;
+    private Icon icon;
 
     @SerializedName("link")
    private String link;
 
-    public HomeIcon getHomeIcon() {
-        return homeIcon;
+    public Icon getIcon() {
+        return icon;
     }
 
     public String getLink() {

@@ -4,26 +4,26 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class HomeOneRowItems {
+public class OneRowItems {
 
         @SerializedName("title")
         private String title;
         @SerializedName("inlineAction")
-        private HomeInlineAction homeInlineAction;
+        private InlineAction inlineAction;
 
         @SerializedName("items")
-        private ArrayList<HomeItem> items;
+        private ArrayList<Item> items;
 
 
         public String getTitle() {
             return title;
         }
 
-        public HomeInlineAction getHomeInlineAction() {
-            return homeInlineAction;
+        public InlineAction getInlineAction() {
+            return inlineAction;
         }
 
-        public ArrayList<HomeItem> getItems() {
+        public ArrayList<Item> getItems() {
         return items;
     }
 }

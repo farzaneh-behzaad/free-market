@@ -2,23 +2,23 @@ package pro.vteam.freemarket.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class HomeBanner {
+public class Banner {
     @SerializedName("image")
-    private HomeImage homeImage;
+    private Image image;
     @SerializedName("link")
     private String link;
     @SerializedName("tag")
-    private HomeTag homeTag;
+    private Tag tag;
 
-    public HomeImage getHomeImage() {
-        return homeImage;
+    public Image getImage() {
+        return image;
     }
 
     public String getLink() {
         return link;
     }
 
-    public HomeTag getHomeTag() {
-        return homeTag;
+    public Tag getTag() {
+        return tag;
     }
 }

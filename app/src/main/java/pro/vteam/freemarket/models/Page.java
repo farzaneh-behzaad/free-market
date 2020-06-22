@@ -4,7 +4,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
-public class HomePage {
+public class Page {
 
 
     @SerializedName("name")
@@ -14,7 +14,7 @@ public class HomePage {
     private String version;
 
     @SerializedName("components")
-    private ArrayList<HomeComponent> components;
+    private ArrayList<Component> components;
 
     public String getName() {
         return name;
@@ -24,7 +24,7 @@ public class HomePage {
         return version;
     }
 
-    public ArrayList<HomeComponent> getComponents() {
+    public ArrayList<Component> getComponents() {
         return components;
     }
 }

@@ -1,4 +1,8 @@
-package pro.vteam.freemarket.models;
+package pro.vteam.freemarket.oldModels;
+
+import pro.vteam.freemarket.oldModels.AppListModel;
+import pro.vteam.freemarket.oldModels.BannerListModel;
+import pro.vteam.freemarket.oldModels.BigPromotionBannerModel;
 
 public class ItemModel {
 

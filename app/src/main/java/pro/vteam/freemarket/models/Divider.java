@@ -2,24 +2,24 @@ package pro.vteam.freemarket.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class HomeDivider {
+public class Divider {
 
 
     @SerializedName("color")
     private String color;
 
     @SerializedName("margin")
-    private HomeMargin homeMargin;
+    private Margin margin;
 
     public String getColor() {
         return color;
     }
 
-    public HomeMargin getHomeMargin() {
-        return homeMargin;
+    public Margin getMargin() {
+        return margin;
     }
 
-    public  class HomeMargin{
+    public static class Margin{
 
         @SerializedName("leftMargin")
         private LeftMargin leftMargin;
@@ -36,7 +36,7 @@ public class HomeDivider {
         }
     }
 
-    public class  LeftMargin{
+    public static class  LeftMargin{
 
         @SerializedName("quantity")
         private int quantity;
@@ -53,7 +53,7 @@ public class HomeDivider {
         }
     }
 
-    public class  RightMargin{
+    public static class  RightMargin{
 
         @SerializedName("quantity")
         private int quantity;

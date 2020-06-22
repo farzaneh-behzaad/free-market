@@ -1,4 +1,4 @@
-package pro.vteam.freemarket.models;
+package pro.vteam.freemarket.oldModels;
 
 public class AppModel {
    private String imgAppUrl;

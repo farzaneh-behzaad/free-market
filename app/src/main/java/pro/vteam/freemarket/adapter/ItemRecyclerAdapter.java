@@ -17,12 +17,12 @@ import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.interfaces.CategoriesItemsListener;
-import pro.vteam.freemarket.models.AppModel;
-import pro.vteam.freemarket.models.BannerListModel;
-import pro.vteam.freemarket.models.BannerModel;
-import pro.vteam.freemarket.models.AppListModel;
-import pro.vteam.freemarket.models.BigPromotionBannerModel;
-import pro.vteam.freemarket.models.ItemModel;
+import pro.vteam.freemarket.oldModels.AppModel;
+import pro.vteam.freemarket.oldModels.BannerListModel;
+import pro.vteam.freemarket.oldModels.BannerModel;
+import pro.vteam.freemarket.oldModels.AppListModel;
+import pro.vteam.freemarket.oldModels.BigPromotionBannerModel;
+import pro.vteam.freemarket.oldModels.ItemModel;
 
 
 public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {

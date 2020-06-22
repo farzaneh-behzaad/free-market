@@ -5,9 +5,9 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-import pro.vteam.freemarket.models.AppListModel;
-import pro.vteam.freemarket.models.AppModel;
-import pro.vteam.freemarket.models.ItemModel;
+import pro.vteam.freemarket.oldModels.AppListModel;
+import pro.vteam.freemarket.oldModels.AppModel;
+import pro.vteam.freemarket.oldModels.ItemModel;
 
 public class CategoriesItemViewModel extends ViewModel {
 

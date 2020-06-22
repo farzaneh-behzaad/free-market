@@ -1,9 +1,10 @@
-package pro.vteam.freemarket.models;
+package pro.vteam.freemarket.oldModels;
 
 import com.google.gson.annotations.SerializedName;
 
 import java.util.ArrayList;
 
+import pro.vteam.freemarket.oldModels.CategoriesTabListModel;
 
 
 public class Result {

@@ -1,4 +1,4 @@
-package pro.vteam.freemarket.models;
+package pro.vteam.freemarket.oldModels;
 
 import java.util.ArrayList;
 

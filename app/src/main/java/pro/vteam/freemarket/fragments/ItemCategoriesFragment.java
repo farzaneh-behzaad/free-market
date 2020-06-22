@@ -19,7 +19,7 @@ import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.adapter.ItemRecyclerAdapter;
-import pro.vteam.freemarket.models.ItemModel;
+import pro.vteam.freemarket.oldModels.ItemModel;
 import pro.vteam.freemarket.viewmodel.CategoriesItemViewModel;
 
 public class ItemCategoriesFragment extends Fragment {

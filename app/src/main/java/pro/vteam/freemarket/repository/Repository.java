@@ -3,16 +3,14 @@ package pro.vteam.freemarket.repository;
 import android.util.Log;
 
 
-import androidx.core.view.KeyEventDispatcher;
-
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.interfaces.CategoriesService;
 
 
 import pro.vteam.freemarket.interfaces.HomeService;
-import pro.vteam.freemarket.models.CategoriesTabListModel;
-import pro.vteam.freemarket.models.HomeComponent;
+import pro.vteam.freemarket.oldModels.CategoriesTabListModel;
+import pro.vteam.freemarket.models.Component;
 import pro.vteam.freemarket.models.HomeResponse;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -28,7 +26,7 @@ public class Repository {
     }
 
     public interface homeDataListener{
-        void onAccess(ArrayList<HomeComponent> components);
+        void onAccess(ArrayList<Component> components);
         void onFailed();
 
     }
@@ -42,11 +40,11 @@ public class Repository {
                 .build();
 
         CategoriesService categoriesService = retrofit.create(CategoriesService.class);
-        Call<pro.vteam.freemarket.models.Response> call = categoriesService.getResponse();
+        Call<pro.vteam.freemarket.oldModels.Response> call = categoriesService.getResponse();
 
-        call.enqueue(new Callback<pro.vteam.freemarket.models.Response>() {
+        call.enqueue(new Callback<pro.vteam.freemarket.oldModels.Response>() {
             @Override
-            public void onResponse(Call<pro.vteam.freemarket.models.Response> call, Response<pro.vteam.freemarket.models.Response> response) {
+            public void onResponse(Call<pro.vteam.freemarket.oldModels.Response> call, Response<pro.vteam.freemarket.oldModels.Response> response) {
                 if (response.body() != null) {
                     if (response.body().getStatusCode() == 200) {
                         categoriesDataListener.onAccess(response.body().getResult().getCategoriesLists());
@@ -62,7 +60,7 @@ public class Repository {
 
 
             @Override
-            public void onFailure(Call<pro.vteam.freemarket.models.Response> call, Throwable t) {
+            public void onFailure(Call<pro.vteam.freemarket.oldModels.Response> call, Throwable t) {
                 Log.wtf("LOG","failure");
                 categoriesDataListener.onFailed();
             }
@@ -91,7 +89,7 @@ public class Repository {
 
                 if (response.body() != null && response.body().getStatusCode()==200){
                    Log.i("LOG","response received");
-                   ArrayList<HomeComponent> components=response.body().getHomeResult().getHomePage().getComponents();
+                   ArrayList<Component> components=response.body().getHomeResult().getPage().getComponents();
                    homeDataListener.onAccess(components);
 
                    }else homeDataListener.onFailed();

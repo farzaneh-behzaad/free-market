@@ -15,14 +15,14 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
-import pro.vteam.freemarket.models.HomeLink;
+import pro.vteam.freemarket.models.Link;
 
 public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
 
-    private ArrayList<HomeLink> linkList;
+    private ArrayList<Link> linkList;
     private Context context;
 
-    public LinkAdapter(Context context, ArrayList<HomeLink> linkList) {
+    public LinkAdapter(Context context, ArrayList<Link> linkList) {
 
         this.linkList = linkList;
         this.context=context;
@@ -39,9 +39,9 @@ public class LinkAdapter extends RecyclerView.Adapter<LinkAdapter.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
 
-        HomeLink item = linkList.get(position);
+        Link item = linkList.get(position);
         Glide.with(context)
-                .load(item.getHomeIcon().getPath())
+                .load(item.getIcon().getPath())
                 .into(holder.linkIcon);
 
         holder.linkText.setText(item.getLink());

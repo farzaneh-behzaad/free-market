@@ -2,7 +2,7 @@ package pro.vteam.freemarket.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class HomeActionbar {
+public class BigPromotionBannerActionbar {
 
 
     @SerializedName("backgroundColor")

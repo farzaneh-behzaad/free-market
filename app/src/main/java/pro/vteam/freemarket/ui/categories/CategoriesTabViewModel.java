@@ -8,7 +8,7 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-import pro.vteam.freemarket.models.CategoriesTabListModel;
+import pro.vteam.freemarket.oldModels.CategoriesTabListModel;
 import pro.vteam.freemarket.repository.Repository;
 
 public class CategoriesTabViewModel extends ViewModel {

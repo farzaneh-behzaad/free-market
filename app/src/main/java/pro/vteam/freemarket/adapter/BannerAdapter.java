@@ -17,14 +17,14 @@ import com.bumptech.glide.Glide;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
-import pro.vteam.freemarket.models.HomeBanner;
+import pro.vteam.freemarket.models.Banner;
 
 public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder>{
     private Context context;
-    private ArrayList<HomeBanner> list;
+    private ArrayList<Banner> list;
 
 
-    BannerAdapter(Context context, ArrayList<HomeBanner> list){
+    BannerAdapter(Context context, ArrayList<Banner> list){
         this.context= context;
         this.list=list;
 
@@ -48,22 +48,22 @@ public class BannerAdapter extends RecyclerView.Adapter<BannerAdapter.viewHolder
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
 
-        HomeBanner item = list.get(position);
+        Banner item = list.get(position);
 
-        if(item.getHomeTag() == null){
+        if(item.getTag() == null){
             holder.txt_bannerTag.setVisibility(View.GONE);
         }
         else {
-            holder.txt_bannerTag.setText(item.getHomeTag().getTitle());
-            holder.txt_bannerTag.setTextColor(Color.parseColor(item.getHomeTag().getTextColor()));
-            holder.txt_bannerTag.setBackgroundColor(Color.parseColor(item.getHomeTag().getBackgroundColor()));
+            holder.txt_bannerTag.setText(item.getTag().getTitle());
+            holder.txt_bannerTag.setTextColor(Color.parseColor(item.getTag().getTextColor()));
+            holder.txt_bannerTag.setBackgroundColor(Color.parseColor(item.getTag().getBackgroundColor()));
 
         }
 
         ((ConstraintLayout.LayoutParams) holder.bannerImage.getLayoutParams()).dimensionRatio
-                =item.getHomeImage().getRatio().getConstraintDimensionRatio();
+                =item.getImage().getRatio().getConstraintDimensionRatio();
         Glide.with(context)
-                .load(item.getHomeImage().getPath())
+                .load(item.getImage().getPath())
                 .centerCrop()
                 .into(holder.bannerImage);
 

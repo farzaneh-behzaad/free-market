@@ -2,8 +2,6 @@ package pro.vteam.freemarket.models;
 
 import com.google.gson.annotations.SerializedName;
 
-import java.util.ArrayList;
-
 public class HomeResult {
 
 
@@ -11,14 +9,14 @@ public class HomeResult {
     private boolean hasNext;
 
     @SerializedName("page")
-    private HomePage homePage;
+    private Page page;
 
 
     public boolean isHasNext() {
         return hasNext;
     }
 
-    public HomePage getHomePage() {
-        return homePage;
+    public Page getPage() {
+        return page;
     }
 }

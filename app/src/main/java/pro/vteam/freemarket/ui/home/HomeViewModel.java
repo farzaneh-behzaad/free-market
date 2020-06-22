@@ -7,12 +7,12 @@ import androidx.lifecycle.ViewModel;
 
 import java.util.ArrayList;
 
-import pro.vteam.freemarket.models.HomeComponent;
+import pro.vteam.freemarket.models.Component;
 import pro.vteam.freemarket.repository.Repository;
 
 public class HomeViewModel extends ViewModel {
 
-    private MutableLiveData<ArrayList<HomeComponent>> componentList;
+    private MutableLiveData<ArrayList<Component>> componentList;
 
     public HomeViewModel() {
         componentList = new MutableLiveData<>();
@@ -23,7 +23,7 @@ public class HomeViewModel extends ViewModel {
 
 
 
-    public MutableLiveData<ArrayList<HomeComponent>> getComponentList(){
+    public MutableLiveData<ArrayList<Component>> getComponentList(){
         return componentList;
     }
 
@@ -34,7 +34,7 @@ public class HomeViewModel extends ViewModel {
 
         Repository.getHomeData(new Repository.homeDataListener() {
             @Override
-            public void onAccess(ArrayList<HomeComponent> components) {
+            public void onAccess(ArrayList<Component> components) {
                 componentList.setValue(components);
 
 

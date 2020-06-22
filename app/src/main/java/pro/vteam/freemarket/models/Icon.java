@@ -2,7 +2,7 @@ package pro.vteam.freemarket.models;
 
 import com.google.gson.annotations.SerializedName;
 
-public class HomeIcon {
+public class Icon {
 
 
     @SerializedName("path")

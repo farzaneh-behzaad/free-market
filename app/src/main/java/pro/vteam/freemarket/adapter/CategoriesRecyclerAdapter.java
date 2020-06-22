@@ -17,7 +17,7 @@ import java.util.ArrayList;
 
 import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.interfaces.CategoriesItemsListener;
-import pro.vteam.freemarket.models.CategoriesItemModel;
+import pro.vteam.freemarket.oldModels.CategoriesItemModel;
 
 public class CategoriesRecyclerAdapter extends RecyclerView.Adapter<CategoriesRecyclerAdapter.ViewHolder> {
     private ArrayList<CategoriesItemModel> itemsList;
