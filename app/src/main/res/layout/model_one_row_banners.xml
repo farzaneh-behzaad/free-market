@@ -6,25 +6,64 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
-    <com.google.android.material.textview.MaterialTextView
-        android:id="@+id/txt_banner_title"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/bannersTitleConstraintLayout"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/banner_recycler"
-        android:text="بازی های پیشنهادی برای شما"
-        android:textColor="@color/textColor"
-        android:layout_marginStart="@dimen/recycler_horizontal_margin"
-        android:layout_marginEnd="@dimen/recycler_horizontal_margin"
-        android:paddingBottom="@dimen/title_recycler_margin"
-        android:textStyle="bold"/>
+        app:layout_constraintEnd_toEndOf="parent"
+        android:padding="8dp"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        >
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_banners_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:text="بازی های پیشنهادی برای شما"
+            android:textColor="@color/textColor"
+            android:layout_marginStart="@dimen/recycler_horizontal_margin"
+            android:textStyle="bold"/>
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_oneRowBannersInlineAction"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toStartOf="@id/icon_oneRowBannersInlineAction"
+            app:layout_constraintTop_toTopOf="parent"
+            android:text="بیشتر"
+
+            />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_oneRowBannersInlineAction"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/txt_oneRowBannersInlineAction"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_keyboard_arrow_left_gray_24dp"
+            android:layout_marginEnd="@dimen/recycler_horizontal_margin"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/banner_recycler"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/txt_banner_title"
+        android:paddingTop="@dimen/one_row_items_recycler_padding"
+        android:paddingBottom="@dimen/one_row_items_recycler_padding"
+        app:layout_constraintTop_toBottomOf="@id/bannersTitleConstraintLayout"
         app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

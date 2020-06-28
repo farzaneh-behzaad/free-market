@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 public class Link {
 
+    @SerializedName("title")
+    private String title;
 
     @SerializedName("icon")
     private Icon icon;
@@ -17,5 +19,9 @@ public class Link {
 
     public String getLink() {
         return link;
+    }
+
+    public String getTitle() {
+        return title;
     }
 }

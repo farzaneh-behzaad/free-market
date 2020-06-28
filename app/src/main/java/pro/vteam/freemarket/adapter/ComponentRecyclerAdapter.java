@@ -30,6 +30,7 @@ import pro.vteam.freemarket.models.BigPromotionBanner;
 import pro.vteam.freemarket.models.Component;
 import pro.vteam.freemarket.models.InlineAction;
 import pro.vteam.freemarket.models.Item;
+import pro.vteam.freemarket.models.Link;
 import pro.vteam.freemarket.models.LinkVerticalCollection;
 import pro.vteam.freemarket.models.OneRowBanners;
 import pro.vteam.freemarket.models.OneRowItems;
@@ -224,15 +225,21 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
     public class OneRowBannersViewHolder extends RecyclerView.ViewHolder {
 
-        TextView bannerTitle;
+        TextView bannersTitle;
+        TextView inlineActionText;
         RecyclerView bannerRecycler;
+        ImageView icon_oneRowBannersInlineAction;
+        ConstraintLayout bannersTitleConstraintLayout;
         CustomItemDecoration customItemDecoration;
 
 
         OneRowBannersViewHolder(@NonNull View itemView) {
             super(itemView);
-            bannerTitle = itemView.findViewById(R.id.txt_banner_title);
+            bannersTitle = itemView.findViewById(R.id.txt_banners_title);
+            inlineActionText = itemView.findViewById(R.id.txt_oneRowBannersInlineAction);
+            bannersTitleConstraintLayout = itemView.findViewById(R.id.bannersTitleConstraintLayout);
             bannerRecycler = itemView.findViewById(R.id.banner_recycler);
+
             if (customItemDecoration == null)
                 setCustomItemDecoration(new CustomItemDecoration(context.getResources().getDimension(R.dimen.recycler_horizontal_margin)));
 
@@ -241,11 +248,37 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
         void setData(OneRowBanners oneRowBanners) {
 
-            if (oneRowBanners.getTitle() == null || oneRowBanners.getTitle().equals("")) {
-                bannerTitle.setVisibility(View.GONE);
+            String oneRowBannersTitle = oneRowBanners.getTitle();
+            InlineAction oneRowItemsInlineAction = oneRowBanners.getInlineAction();
+
+
+            if ((oneRowBannersTitle == null || oneRowBannersTitle.equals("")) && oneRowItemsInlineAction == null) {
+                bannersTitleConstraintLayout.setVisibility(View.GONE);
+
+            } else if (oneRowBannersTitle == null || oneRowBannersTitle.equals("")) {
+                bannersTitle.setVisibility(View.GONE);
+                inlineActionText.setText(oneRowBanners.getInlineAction().getTitle());
+                inlineActionText.setTextColor(Color.parseColor(oneRowBanners.getInlineAction().getTextColor()));
+                inlineActionText.setBackgroundColor(Color.parseColor(oneRowBanners.getInlineAction().getBackgroundColor()));
+
+
+            } else if (oneRowItemsInlineAction == null) {
+                icon_oneRowBannersInlineAction.setVisibility(View.GONE);
+                inlineActionText.setVisibility(View.GONE);
+                bannersTitle.setText(oneRowBanners.getTitle());
+                bannersTitleConstraintLayout.setClickable(false);
+                bannersTitleConstraintLayout.setFocusable(false);
+
             } else {
-                bannerTitle.setText(oneRowBanners.getTitle());
+                bannersTitleConstraintLayout.setBackgroundColor(Color.parseColor(oneRowBanners.getInlineAction().getBackgroundColor()));
+                bannersTitle.setText(oneRowBanners.getTitle());
+                inlineActionText.setText(oneRowBanners.getInlineAction().getTitle());
+
             }
+
+
+
+
 
             ArrayList<Banner> bannerList = oneRowBanners.getBanners();
             BannerAdapter bannerAdapter = new BannerAdapter(context, bannerList);
@@ -274,10 +307,11 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
         OneRowItemsViewHolder(@NonNull View itemView) {
             super(itemView);
-            ConstraintLayout_title = itemView.findViewById(R.id.titleConstraintLayout);
+            ConstraintLayout_title = itemView.findViewById(R.id.itemsTitleConstraintLayout);
             txt_oneRowItemsInlineAction = itemView.findViewById(R.id.txt_oneRowItemsInlineAction);
             icon_oneRowItemsInlineAction = itemView.findViewById(R.id.icon_oneRowItemsInlineAction);
             itemsTitle = itemView.findViewById(R.id.txt_items_title);
+            ConstraintLayout_title = itemView.findViewById(R.id.itemsTitleConstraintLayout);
             itemsRecycler = itemView.findViewById(R.id.item_recycler);
             if (customItemDecoration == null)
                 setCustomItemDecoration(new CustomItemDecoration(context.getResources().getDimension(R.dimen.recycler_horizontal_margin)));
@@ -288,12 +322,19 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             String oneRowItemsTitle = oneRowItems.getTitle();
             InlineAction oneRowItemsInlineAction = oneRowItems.getInlineAction();
 
+
+
             if ((oneRowItemsTitle == null || oneRowItemsTitle.equals("")) && oneRowItemsInlineAction == null) {
                 ConstraintLayout_title.setVisibility(View.GONE);
+
 
             } else if (oneRowItemsTitle == null || oneRowItemsTitle.equals("")) {
                 itemsTitle.setVisibility(View.GONE);
                 txt_oneRowItemsInlineAction.setText(oneRowItems.getInlineAction().getTitle());
+                txt_oneRowItemsInlineAction.setTextColor(Color.parseColor(oneRowItems.getInlineAction().getTextColor()));
+                ConstraintLayout_title.setBackgroundColor(Color.GREEN);
+
+
 
             } else if (oneRowItemsInlineAction == null) {
                 icon_oneRowItemsInlineAction.setVisibility(View.GONE);
@@ -302,8 +343,9 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 ConstraintLayout_title.setClickable(false);
                 ConstraintLayout_title.setFocusable(false);
 
-            } else {
 
+            } else {
+                ConstraintLayout_title.setBackgroundColor(Color.GREEN);
                 itemsTitle.setText(oneRowItems.getTitle());
                 txt_oneRowItemsInlineAction.setText(oneRowItems.getInlineAction().getTitle());
 
@@ -340,8 +382,27 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
         void setData(LinkVerticalCollection linkVerticalCollection) {
 
+
+            ArrayList<Link> visibleList=new ArrayList<>();
+            int maxCount = linkVerticalCollection.getMaxCount();
+
+            if(linkVerticalCollection.getLinks().size()<=maxCount){
+                visibleList=linkVerticalCollection.getLinks();
+                txt_moreAction.setVisibility(View.GONE);
+            }
+            else {
+
+
+                txt_moreAction.setBackgroundColor(Color.parseColor(linkVerticalCollection.getInlineAction().getBackgroundColor()));
+                txt_moreAction.setTextColor(Color.parseColor(linkVerticalCollection.getInlineAction().getTextColor()));
+                for (int i = 0; i < maxCount; i++) {
+                    visibleList.add(linkVerticalCollection.getLinks().get(i));
+                }
+            }
+
+
             linksTitle.setText(linkVerticalCollection.getTitle());
-            LinkAdapter linkAdapter = new LinkAdapter(context, linkVerticalCollection.getLinks());
+            LinkAdapter linkAdapter = new LinkAdapter(context, visibleList, linkVerticalCollection.getDivider());
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false);
             linksRecycler.setLayoutManager(linearLayoutManager);
             linksRecycler.setAdapter(linkAdapter);

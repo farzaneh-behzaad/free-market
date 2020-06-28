@@ -9,7 +9,7 @@
 
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/titleConstraintLayout"
+            android:id="@+id/itemsTitleConstraintLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
@@ -63,7 +63,7 @@
         android:id="@+id/item_recycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/titleConstraintLayout"
+        app:layout_constraintTop_toBottomOf="@id/itemsTitleConstraintLayout"
         android:paddingTop="@dimen/one_row_items_recycler_padding"
         android:paddingBottom="@dimen/one_row_items_recycler_padding"
         app:layout_constraintStart_toStartOf="parent"/>

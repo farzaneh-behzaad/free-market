@@ -143,7 +143,7 @@ public class ItemRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewH
 
         BannerViewHolder(@NonNull View itemView) {
             super(itemView);
-            bannerTitle = itemView.findViewById(R.id.txt_banner_title);
+            bannerTitle = itemView.findViewById(R.id.txt_banners_title);
             bannerRecycler = itemView.findViewById(R.id.banner_recycler);
 
         }

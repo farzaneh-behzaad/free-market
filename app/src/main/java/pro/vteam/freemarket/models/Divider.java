@@ -42,13 +42,13 @@ public class Divider {
         private int quantity;
 
         @SerializedName("type")
-        private int type;
+        private String type;
 
         public int getQuantity() {
             return quantity;
         }
 
-        public int getType() {
+        public String getType() {
             return type;
         }
     }
@@ -59,13 +59,13 @@ public class Divider {
         private int quantity;
 
         @SerializedName("type")
-        private int type;
+        private String type;
 
         public int getQuantity() {
             return quantity;
         }
 
-        public int getType() {
+        public String getType() {
             return type;
         }
 
