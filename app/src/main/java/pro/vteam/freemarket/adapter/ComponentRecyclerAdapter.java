@@ -23,6 +23,7 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
+import jp.wasabeef.glide.transformations.BlurTransformation;
 import pro.vteam.freemarket.Constant;
 import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.models.Banner;
@@ -30,11 +31,14 @@ import pro.vteam.freemarket.models.BigPromotionBanner;
 import pro.vteam.freemarket.models.Component;
 import pro.vteam.freemarket.models.InlineAction;
 import pro.vteam.freemarket.models.Item;
+import pro.vteam.freemarket.models.ItemHeader;
 import pro.vteam.freemarket.models.Link;
 import pro.vteam.freemarket.models.LinkVerticalCollection;
 import pro.vteam.freemarket.models.OneRowBanners;
 import pro.vteam.freemarket.models.OneRowItems;
 import pro.vteam.freemarket.utils.CustomItemDecoration;
+
+import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 
 public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -74,6 +78,11 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 View view = LayoutInflater.from(context).inflate(R.layout.model_link_vertical_collection, parent, false);
                 return new LinkVerticalCollectionViewHolder(view);
             }
+
+            case Constant.ITEM_HEADER: {
+                View view = LayoutInflater.from(context).inflate(R.layout.model_item_header, parent, false);
+                return new ItemHeaderViewHolder(view);
+            }
             default:
                 View view = LayoutInflater.from(context).inflate(R.layout.model_unsuported_component, parent, false);
                 return new UnSupportedComponentViewHolder(view);
@@ -112,6 +121,12 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 ((LinkVerticalCollectionViewHolder) holder).setData(linkVerticalCollection);
                 break;
 
+            case Constant.ITEM_HEADER:
+                String jsonItemHeaderObject = gson.toJson(list.get(position).getObject());
+                ItemHeader itemHeader = gson.fromJson(jsonItemHeaderObject, ItemHeader.class);
+                ((ItemHeaderViewHolder) holder).setData(itemHeader);
+                break;
+
             default:
                 ((UnSupportedComponentViewHolder) holder).txt_description.setText("این کامپوننت ساپورت نمی شود لطفا اپلیکیشن را آپدیت کنید.");
 
@@ -137,6 +152,10 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             case "LinkVerticalCollection":
                 return Constant.LINK_VERTICAL_COLLECTION;
 
+
+            case "ItemHeader":
+                return Constant.ITEM_HEADER;
+
             default:
                 return Constant.UN_SUPPORTED_COMPONENT;
         }
@@ -148,6 +167,18 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
     public int getItemCount() {
         return list.size();
+    }
+
+
+    public static class UnSupportedComponentViewHolder extends RecyclerView.ViewHolder {
+
+        TextView txt_description;
+
+        UnSupportedComponentViewHolder(@NonNull View itemView) {
+            super(itemView);
+            txt_description = itemView.findViewById(R.id.txt_description);
+        }
+
     }
 
 
@@ -410,16 +441,55 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         }
     }
 
-    public static class UnSupportedComponentViewHolder extends RecyclerView.ViewHolder {
+    public class ItemHeaderViewHolder extends RecyclerView.ViewHolder{
 
-        TextView txt_description;
+        ImageView img_itemHeader;
+        ImageView icon_itemHeader;
+        TextView txt_titleItemHeader;
+        TextView txt_companyItemHeader;
+        Button btn_inlineActionItemHeader;
 
-        UnSupportedComponentViewHolder(@NonNull View itemView) {
+
+        public ItemHeaderViewHolder(@NonNull View itemView) {
             super(itemView);
-            txt_description = itemView.findViewById(R.id.txt_description);
+            img_itemHeader=itemView.findViewById(R.id.img_itemHeader);
+            icon_itemHeader=itemView.findViewById(R.id.icon_itemHeader);
+            txt_titleItemHeader=itemView.findViewById(R.id.txt_titleItemHeader);
+            txt_companyItemHeader=itemView.findViewById(R.id.txt_companyItemHeader);
+            btn_inlineActionItemHeader=itemView.findViewById(R.id.btn_inlineActionItemHeader);
         }
 
+        void setData(ItemHeader itemHeader){
+            ((ConstraintLayout.LayoutParams) img_itemHeader.getLayoutParams()).dimensionRatio
+                    =itemHeader.getImage().getRatio().getConstraintDimensionRatio();
+            ((ConstraintLayout.LayoutParams) icon_itemHeader.getLayoutParams()).dimensionRatio
+                    =itemHeader.getItem().getIcon().getRatio().getConstraintDimensionRatio();
+
+
+            if(itemHeader.getImage().getPath()!=null) {
+                Glide.with(context)
+                        .load(itemHeader.getImage().getPath())
+                        .centerCrop()
+                        .into(img_itemHeader);
+            }
+            Glide.with(context)
+                    .load(itemHeader.getItem().getIcon().getPath())
+                    .into(icon_itemHeader);
+
+
+            txt_titleItemHeader.setText(itemHeader.getItem().getTitle());
+            txt_companyItemHeader.setText(itemHeader.getCompany().getTitle());
+            btn_inlineActionItemHeader.setText(itemHeader.getInlineAction().getTitle());
+            btn_inlineActionItemHeader.setTextColor(Color.parseColor(itemHeader.getInlineAction().getTextColor()));
+            btn_inlineActionItemHeader.setBackgroundColor(Color.parseColor(itemHeader.getInlineAction().getBackgroundColor()));
+
+
+        }
     }
+
+
+
+
 
 
 }
