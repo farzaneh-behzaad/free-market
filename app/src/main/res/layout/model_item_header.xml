@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_itemHeader"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHeight_max="120dp"
+            android:background="@color/colorAccent"
+
+            />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/image_guideline"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.20"
+            />
+
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/image_guideline"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        >
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/icon_itemHeader"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintDimensionRatio="w,1:1"
+            app:layout_constraintHeight_max="84dp"
+            app:layout_constraintWidth_max="84dp"
+            android:src="@drawable/p1"
+            android:padding="4dp"
+           />
+
+        <com.google.android.material.textview.MaterialTextView
+
+            android:id="@+id/txt_titleItemHeader"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="تاکسی هوشمند"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/icon_itemHeader"
+            android:textColor="@color/textColor"
+            android:textStyle="bold"
+            />
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/txt_companyItemHeader"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="16dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="ابتکار فناوران سهند"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_titleItemHeader"
+            android:textColor="@color/darkGray"
+
+            />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_inlineActionItemHeader"
+            style="@style/ButtonStyle"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            app:layout_constraintDimensionRatio="w,1:5"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/txt_companyItemHeader"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:text="نصصصب"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
