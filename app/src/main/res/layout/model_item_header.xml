@@ -14,7 +14,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHeight_max="120dp"
-            android:background="@color/colorAccent"
+            android:background="@drawable/bottom_curve_image"
 
             />
 

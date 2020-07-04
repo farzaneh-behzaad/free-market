@@ -460,21 +460,24 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         }
 
         void setData(ItemHeader itemHeader){
-            ((ConstraintLayout.LayoutParams) img_itemHeader.getLayoutParams()).dimensionRatio
-                    =itemHeader.getImage().getRatio().getConstraintDimensionRatio();
-            ((ConstraintLayout.LayoutParams) icon_itemHeader.getLayoutParams()).dimensionRatio
-                    =itemHeader.getItem().getIcon().getRatio().getConstraintDimensionRatio();
 
 
-            if(itemHeader.getImage().getPath()!=null) {
+
+            if(itemHeader.getImage()!=null && itemHeader.getImage().getPath()!=null) {
                 Glide.with(context)
                         .load(itemHeader.getImage().getPath())
                         .centerCrop()
                         .into(img_itemHeader);
+
+                ((ConstraintLayout.LayoutParams) img_itemHeader.getLayoutParams()).dimensionRatio
+                        =itemHeader.getImage().getRatio().getConstraintDimensionRatio();
             }
             Glide.with(context)
                     .load(itemHeader.getItem().getIcon().getPath())
                     .into(icon_itemHeader);
+
+            ((ConstraintLayout.LayoutParams) icon_itemHeader.getLayoutParams()).dimensionRatio
+                    =itemHeader.getItem().getIcon().getRatio().getConstraintDimensionRatio();
 
 
             txt_titleItemHeader.setText(itemHeader.getItem().getTitle());
