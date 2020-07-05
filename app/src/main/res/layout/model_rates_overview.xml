@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/recycler_horizontal_margin"
+    android:paddingEnd="@dimen/recycler_horizontal_margin"
+    android:orientation="vertical">
+
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/title_ratesOverview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="نظرات و امتیازات"
+        android:textColor="@color/textColor"
+        android:textStyle="bold"
+        android:layout_marginBottom="@dimen/title_recycler_margin"/>
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        >
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.25"
+            android:gravity="center"
+            android:orientation="vertical">
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_rateAverage"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:text=" ۴/۶ "
+                android:textColor="@color/darkGray"
+                android:textSize="32dp"
+                android:textStyle="bold"
+                android:gravity="center"/>
+
+            <com.google.android.material.textview.MaterialTextView
+                android:id="@+id/txt_rateCount"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="۵۰۰ نظر"
+                android:textColor="@color/lightGray"
+                android:textStyle="bold"
+                android:gravity="center"
+                 />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/layout_sectionsHolder"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.75"
+            android:orientation="vertical"
+            android:gravity="center"
+
+           />
+
+
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+
+</androidx.appcompat.widget.LinearLayoutCompat>

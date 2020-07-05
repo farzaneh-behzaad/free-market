@@ -30,6 +30,7 @@ import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.models.Banner;
 import pro.vteam.freemarket.models.BigPromotionBanner;
 import pro.vteam.freemarket.models.Component;
+import pro.vteam.freemarket.models.EachRateOverviewSection;
 import pro.vteam.freemarket.models.InlineAction;
 import pro.vteam.freemarket.models.Item;
 import pro.vteam.freemarket.models.ItemHeader;
@@ -38,6 +39,7 @@ import pro.vteam.freemarket.models.Link;
 import pro.vteam.freemarket.models.LinkVerticalCollection;
 import pro.vteam.freemarket.models.OneRowBanners;
 import pro.vteam.freemarket.models.OneRowItems;
+import pro.vteam.freemarket.models.RatesOverview;
 import pro.vteam.freemarket.utils.CustomItemDecoration;
 
 
@@ -90,6 +92,11 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             case Constant.DIVIDER: {
                 View view = LayoutInflater.from(context).inflate(R.layout.model_divider, parent, false);
                 return new DividerViewHolder(view);
+            }
+
+            case Constant.RATES_OVERVIEW: {
+                View view = LayoutInflater.from(context).inflate(R.layout.model_rates_overview, parent, false);
+                return new RatesOverviewViewHolder(view);
             }
             default:
                 View view = LayoutInflater.from(context).inflate(R.layout.model_unsuported_component, parent, false);
@@ -147,6 +154,12 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 Divider divider = gson.fromJson(jsonDividerObject, Divider.class);
                 ((DividerViewHolder)holder).setData(divider);
                 break;
+
+            case Constant.RATES_OVERVIEW:
+                String jsonRatesOverviewObject = gson.toJson(list.get(position).getObject());
+                RatesOverview ratesOverview = gson.fromJson(jsonRatesOverviewObject, RatesOverview.class);
+                ((RatesOverviewViewHolder)holder).setData(ratesOverview);
+                break;
             default:
                 ((UnSupportedComponentViewHolder) holder).txt_description.setText("این کامپوننت ساپورت نمی شود لطفا اپلیکیشن را آپدیت کنید.");
 
@@ -181,6 +194,9 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
             case "Divider":
                 return Constant.DIVIDER;
+
+            case "RatesOverview":
+                return Constant.RATES_OVERVIEW;
 
             default:
                 return Constant.UN_SUPPORTED_COMPONENT;
@@ -561,6 +577,43 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             params.setMargins(leftMargin, 0,rightMargin, 0);
             dividerView.setLayoutParams(params);
             dividerView.requestLayout();
+
+
+        }
+    }
+
+    public class RatesOverviewViewHolder extends RecyclerView.ViewHolder{
+
+
+        TextView txt_ratesTitle;
+        TextView txt_ratesAverage;
+        TextView txt_rateCount;
+        LinearLayoutCompat layout_sectionsHolder;
+
+        public RatesOverviewViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            txt_ratesTitle=itemView.findViewById(R.id.title_ratesOverview);
+            txt_ratesAverage=itemView.findViewById(R.id.txt_rateAverage);
+            txt_rateCount=itemView.findViewById(R.id.txt_rateCount);
+            layout_sectionsHolder=itemView.findViewById(R.id.layout_sectionsHolder);
+        }
+
+        void setData(RatesOverview ratesOverview){
+
+            txt_ratesTitle.setText(ratesOverview.getTitle());
+            txt_ratesAverage.setText(ratesOverview.getRateAverage());
+            txt_rateCount.setText(ratesOverview.getRateCount());
+
+
+            ArrayList<RatesOverview.RatesOverviewSection> ratesOverviewSections = ratesOverview.getRatesOverviewSections();
+            for(int i=0;i<ratesOverviewSections.size();i++){
+                EachRateOverviewSection eachRateOverviewSection=new EachRateOverviewSection(context);
+                eachRateOverviewSection.setTxt_progressNum(ratesOverviewSections.get(i).getTitle());
+                eachRateOverviewSection.setProgressBar(ratesOverviewSections.get(i).getPercent());
+                layout_sectionsHolder.addView(eachRateOverviewSection);
+
+            }
 
 
         }
