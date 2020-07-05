@@ -24,6 +24,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.Constant;
+import pro.vteam.freemarket.models.Divider;
 import pro.vteam.freemarket.models.EachItemOverview;
 import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.models.Banner;
@@ -86,6 +87,10 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 View view = LayoutInflater.from(context).inflate(R.layout.model_item_overview, parent, false);
                 return new ItemOverviewViewHolder(view);
             }
+            case Constant.DIVIDER: {
+                View view = LayoutInflater.from(context).inflate(R.layout.model_divider, parent, false);
+                return new DividerViewHolder(view);
+            }
             default:
                 View view = LayoutInflater.from(context).inflate(R.layout.model_unsuported_component, parent, false);
                 return new UnSupportedComponentViewHolder(view);
@@ -136,6 +141,12 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 ItemOverview itemOverview = gson.fromJson(jsonItemOverviewObject, ItemOverview.class);
                 ((ItemOverviewViewHolder) holder).setData(itemOverview);
                 break;
+
+            case Constant.DIVIDER:
+                String jsonDividerObject = gson.toJson(list.get(position).getObject());
+                Divider divider = gson.fromJson(jsonDividerObject, Divider.class);
+                ((DividerViewHolder)holder).setData(divider);
+                break;
             default:
                 ((UnSupportedComponentViewHolder) holder).txt_description.setText("این کامپوننت ساپورت نمی شود لطفا اپلیکیشن را آپدیت کنید.");
 
@@ -167,6 +178,9 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
             case "ItemOverview":
                 return Constant.ITEM_OVERVIEW;
+
+            case "Divider":
+                return Constant.DIVIDER;
 
             default:
                 return Constant.UN_SUPPORTED_COMPONENT;
@@ -456,7 +470,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         Button btn_inlineActionItemHeader;
 
 
-        public ItemHeaderViewHolder(@NonNull View itemView) {
+        ItemHeaderViewHolder(@NonNull View itemView) {
             super(itemView);
             img_itemHeader = itemView.findViewById(R.id.img_itemHeader);
             icon_itemHeader = itemView.findViewById(R.id.icon_itemHeader);
@@ -500,7 +514,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         LinearLayoutCompat linearLayoutCompat;
 
 
-        public ItemOverviewViewHolder(@NonNull View itemView) {
+        ItemOverviewViewHolder(@NonNull View itemView) {
             super(itemView);
             linearLayoutCompat = itemView.findViewById(R.id.item_overview_linearLayout);
         }
@@ -523,6 +537,30 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                     eachItemOverview.setVisibilityDivider(View.GONE);
                 }
             }
+
+
+        }
+    }
+
+    public class DividerViewHolder extends RecyclerView.ViewHolder{
+
+        View dividerView;
+
+        public DividerViewHolder(@NonNull View itemView) {
+            super(itemView);
+            dividerView=itemView.findViewById(R.id.divider);
+        }
+
+        void setData(Divider divider){
+
+            dividerView.setBackgroundColor(Color.parseColor(divider.getColor()));
+
+            ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) dividerView.getLayoutParams();
+            int rightMargin= divider.getMargin().getRightMargin().getQuantity();
+            int leftMargin= divider.getMargin().getLeftMargin().getQuantity();
+            params.setMargins(leftMargin, 0,rightMargin, 0);
+            dividerView.setLayoutParams(params);
+            dividerView.requestLayout();
 
 
         }

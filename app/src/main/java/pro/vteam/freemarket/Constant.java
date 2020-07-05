@@ -8,5 +8,6 @@ public class Constant {
     public static final int LINK_VERTICAL_COLLECTION=3;
     public static final int ITEM_HEADER=4;
     public static final int ITEM_OVERVIEW=5;
+    public static final int DIVIDER=6;
 
 }
