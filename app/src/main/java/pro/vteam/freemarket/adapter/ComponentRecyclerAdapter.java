@@ -23,8 +23,8 @@ import com.google.gson.Gson;
 
 import java.util.ArrayList;
 
-import jp.wasabeef.glide.transformations.BlurTransformation;
 import pro.vteam.freemarket.Constant;
+import pro.vteam.freemarket.models.EachItemOverview;
 import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.models.Banner;
 import pro.vteam.freemarket.models.BigPromotionBanner;
@@ -32,13 +32,12 @@ import pro.vteam.freemarket.models.Component;
 import pro.vteam.freemarket.models.InlineAction;
 import pro.vteam.freemarket.models.Item;
 import pro.vteam.freemarket.models.ItemHeader;
+import pro.vteam.freemarket.models.ItemOverview;
 import pro.vteam.freemarket.models.Link;
 import pro.vteam.freemarket.models.LinkVerticalCollection;
 import pro.vteam.freemarket.models.OneRowBanners;
 import pro.vteam.freemarket.models.OneRowItems;
 import pro.vteam.freemarket.utils.CustomItemDecoration;
-
-import static com.bumptech.glide.request.RequestOptions.bitmapTransform;
 
 
 public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
@@ -82,6 +81,10 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             case Constant.ITEM_HEADER: {
                 View view = LayoutInflater.from(context).inflate(R.layout.model_item_header, parent, false);
                 return new ItemHeaderViewHolder(view);
+            }
+            case Constant.ITEM_OVERVIEW: {
+                View view = LayoutInflater.from(context).inflate(R.layout.model_item_overview, parent, false);
+                return new ItemOverviewViewHolder(view);
             }
             default:
                 View view = LayoutInflater.from(context).inflate(R.layout.model_unsuported_component, parent, false);
@@ -127,6 +130,12 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 ((ItemHeaderViewHolder) holder).setData(itemHeader);
                 break;
 
+
+            case Constant.ITEM_OVERVIEW:
+                String jsonItemOverviewObject = gson.toJson(list.get(position).getObject());
+                ItemOverview itemOverview = gson.fromJson(jsonItemOverviewObject, ItemOverview.class);
+                ((ItemOverviewViewHolder) holder).setData(itemOverview);
+                break;
             default:
                 ((UnSupportedComponentViewHolder) holder).txt_description.setText("این کامپوننت ساپورت نمی شود لطفا اپلیکیشن را آپدیت کنید.");
 
@@ -155,6 +164,9 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
             case "ItemHeader":
                 return Constant.ITEM_HEADER;
+
+            case "ItemOverview":
+                return Constant.ITEM_OVERVIEW;
 
             default:
                 return Constant.UN_SUPPORTED_COMPONENT;
@@ -308,9 +320,6 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             }
 
 
-
-
-
             ArrayList<Banner> bannerList = oneRowBanners.getBanners();
             BannerAdapter bannerAdapter = new BannerAdapter(context, bannerList);
             LinearLayoutManager linearLayoutManager = new LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false);
@@ -354,7 +363,6 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             InlineAction oneRowItemsInlineAction = oneRowItems.getInlineAction();
 
 
-
             if ((oneRowItemsTitle == null || oneRowItemsTitle.equals("")) && oneRowItemsInlineAction == null) {
                 ConstraintLayout_title.setVisibility(View.GONE);
 
@@ -364,7 +372,6 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 txt_oneRowItemsInlineAction.setText(oneRowItems.getInlineAction().getTitle());
                 txt_oneRowItemsInlineAction.setTextColor(Color.parseColor(oneRowItems.getInlineAction().getTextColor()));
                 ConstraintLayout_title.setBackgroundColor(Color.GREEN);
-
 
 
             } else if (oneRowItemsInlineAction == null) {
@@ -414,14 +421,13 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         void setData(LinkVerticalCollection linkVerticalCollection) {
 
 
-            ArrayList<Link> visibleList=new ArrayList<>();
+            ArrayList<Link> visibleList = new ArrayList<>();
             int maxCount = linkVerticalCollection.getMaxCount();
 
-            if(linkVerticalCollection.getLinks().size()<=maxCount){
-                visibleList=linkVerticalCollection.getLinks();
+            if (linkVerticalCollection.getLinks().size() <= maxCount) {
+                visibleList = linkVerticalCollection.getLinks();
                 txt_moreAction.setVisibility(View.GONE);
-            }
-            else {
+            } else {
 
 
                 txt_moreAction.setBackgroundColor(Color.parseColor(linkVerticalCollection.getInlineAction().getBackgroundColor()));
@@ -441,7 +447,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         }
     }
 
-    public class ItemHeaderViewHolder extends RecyclerView.ViewHolder{
+    public class ItemHeaderViewHolder extends RecyclerView.ViewHolder {
 
         ImageView img_itemHeader;
         ImageView icon_itemHeader;
@@ -452,32 +458,31 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
         public ItemHeaderViewHolder(@NonNull View itemView) {
             super(itemView);
-            img_itemHeader=itemView.findViewById(R.id.img_itemHeader);
-            icon_itemHeader=itemView.findViewById(R.id.icon_itemHeader);
-            txt_titleItemHeader=itemView.findViewById(R.id.txt_titleItemHeader);
-            txt_companyItemHeader=itemView.findViewById(R.id.txt_companyItemHeader);
-            btn_inlineActionItemHeader=itemView.findViewById(R.id.btn_inlineActionItemHeader);
+            img_itemHeader = itemView.findViewById(R.id.img_itemHeader);
+            icon_itemHeader = itemView.findViewById(R.id.icon_itemHeader);
+            txt_titleItemHeader = itemView.findViewById(R.id.txt_titleItemHeader);
+            txt_companyItemHeader = itemView.findViewById(R.id.txt_companyItemHeader);
+            btn_inlineActionItemHeader = itemView.findViewById(R.id.btn_inlineActionItemHeader);
         }
 
-        void setData(ItemHeader itemHeader){
+        void setData(ItemHeader itemHeader) {
 
 
-
-            if(itemHeader.getImage()!=null && itemHeader.getImage().getPath()!=null) {
+            if (itemHeader.getImage() != null && itemHeader.getImage().getPath() != null) {
                 Glide.with(context)
                         .load(itemHeader.getImage().getPath())
                         .centerCrop()
                         .into(img_itemHeader);
 
                 ((ConstraintLayout.LayoutParams) img_itemHeader.getLayoutParams()).dimensionRatio
-                        =itemHeader.getImage().getRatio().getConstraintDimensionRatio();
+                        = itemHeader.getImage().getRatio().getConstraintDimensionRatio();
             }
             Glide.with(context)
                     .load(itemHeader.getItem().getIcon().getPath())
                     .into(icon_itemHeader);
 
             ((ConstraintLayout.LayoutParams) icon_itemHeader.getLayoutParams()).dimensionRatio
-                    =itemHeader.getItem().getIcon().getRatio().getConstraintDimensionRatio();
+                    = itemHeader.getItem().getIcon().getRatio().getConstraintDimensionRatio();
 
 
             txt_titleItemHeader.setText(itemHeader.getItem().getTitle());
@@ -490,9 +495,38 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         }
     }
 
+    public class ItemOverviewViewHolder extends RecyclerView.ViewHolder {
+
+        LinearLayoutCompat linearLayoutCompat;
 
 
+        public ItemOverviewViewHolder(@NonNull View itemView) {
+            super(itemView);
+            linearLayoutCompat = itemView.findViewById(R.id.item_overview_linearLayout);
+        }
 
+        void setData(ItemOverview itemOverview) {
+
+            ArrayList<ItemOverview.ItemOverviewSection> itemOverviewSections = itemOverview.getItemOverviewSections();
+            if (linearLayoutCompat.getChildCount() > 0)
+                linearLayoutCompat.removeAllViews();
+            LinearLayoutCompat.LayoutParams param = new LinearLayoutCompat.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT, 1.0f);
+
+            for (int i = 0; i < itemOverviewSections.size(); i++) {
+                EachItemOverview eachItemOverview = new EachItemOverview(context);
+                eachItemOverview.setLayoutParams(param);
+                eachItemOverview.setTxt_title(itemOverviewSections.get(i).getTitle());
+                eachItemOverview.setTxt_subTitle(itemOverviewSections.get(i).getSubTitle());
+                linearLayoutCompat.addView(eachItemOverview);
+
+                if(i == itemOverviewSections.size() - 1){
+                    eachItemOverview.setVisibilityDivider(View.GONE);
+                }
+            }
+
+
+        }
+    }
 
 
 }
