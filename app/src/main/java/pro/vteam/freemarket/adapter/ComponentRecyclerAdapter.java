@@ -2,14 +2,18 @@ package pro.vteam.freemarket.adapter;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.os.Build;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.GridLayout;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.widget.LinearLayoutCompat;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -30,7 +34,7 @@ import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.models.Banner;
 import pro.vteam.freemarket.models.BigPromotionBanner;
 import pro.vteam.freemarket.models.Component;
-import pro.vteam.freemarket.models.EachRateOverviewSection;
+import pro.vteam.freemarket.models.RateOverviewSectionHelper;
 import pro.vteam.freemarket.models.InlineAction;
 import pro.vteam.freemarket.models.Item;
 import pro.vteam.freemarket.models.ItemHeader;
@@ -105,6 +109,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
 
@@ -152,13 +157,13 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             case Constant.DIVIDER:
                 String jsonDividerObject = gson.toJson(list.get(position).getObject());
                 Divider divider = gson.fromJson(jsonDividerObject, Divider.class);
-                ((DividerViewHolder)holder).setData(divider);
+                ((DividerViewHolder) holder).setData(divider);
                 break;
 
             case Constant.RATES_OVERVIEW:
                 String jsonRatesOverviewObject = gson.toJson(list.get(position).getObject());
                 RatesOverview ratesOverview = gson.fromJson(jsonRatesOverviewObject, RatesOverview.class);
-                ((RatesOverviewViewHolder)holder).setData(ratesOverview);
+                ((RatesOverviewViewHolder) holder).setData(ratesOverview);
                 break;
             default:
                 ((UnSupportedComponentViewHolder) holder).txt_description.setText("این کامپوننت ساپورت نمی شود لطفا اپلیکیشن را آپدیت کنید.");
@@ -549,7 +554,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 eachItemOverview.setTxt_subTitle(itemOverviewSections.get(i).getSubTitle());
                 linearLayoutCompat.addView(eachItemOverview);
 
-                if(i == itemOverviewSections.size() - 1){
+                if (i == itemOverviewSections.size() - 1) {
                     eachItemOverview.setVisibilityDivider(View.GONE);
                 }
             }
@@ -558,23 +563,23 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         }
     }
 
-    public class DividerViewHolder extends RecyclerView.ViewHolder{
+    public class DividerViewHolder extends RecyclerView.ViewHolder {
 
         View dividerView;
 
         public DividerViewHolder(@NonNull View itemView) {
             super(itemView);
-            dividerView=itemView.findViewById(R.id.divider);
+            dividerView = itemView.findViewById(R.id.divider);
         }
 
-        void setData(Divider divider){
+        void setData(Divider divider) {
 
             dividerView.setBackgroundColor(Color.parseColor(divider.getColor()));
 
             ViewGroup.MarginLayoutParams params = (ViewGroup.MarginLayoutParams) dividerView.getLayoutParams();
-            int rightMargin= divider.getMargin().getRightMargin().getQuantity();
-            int leftMargin= divider.getMargin().getLeftMargin().getQuantity();
-            params.setMargins(leftMargin, 0,rightMargin, 0);
+            int rightMargin = divider.getMargin().getRightMargin().getQuantity();
+            int leftMargin = divider.getMargin().getLeftMargin().getQuantity();
+            params.setMargins(leftMargin, 0, rightMargin, 0);
             dividerView.setLayoutParams(params);
             dividerView.requestLayout();
 
@@ -582,24 +587,27 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         }
     }
 
-    public class RatesOverviewViewHolder extends RecyclerView.ViewHolder{
+    public class RatesOverviewViewHolder extends RecyclerView.ViewHolder {
 
 
         TextView txt_ratesTitle;
         TextView txt_ratesAverage;
         TextView txt_rateCount;
-        LinearLayoutCompat layout_sectionsHolder;
+        GridLayout gridLayout;
 
         public RatesOverviewViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            txt_ratesTitle=itemView.findViewById(R.id.title_ratesOverview);
-            txt_ratesAverage=itemView.findViewById(R.id.txt_rateAverage);
-            txt_rateCount=itemView.findViewById(R.id.txt_rateCount);
-            layout_sectionsHolder=itemView.findViewById(R.id.layout_sectionsHolder);
+            txt_ratesTitle = itemView.findViewById(R.id.title_ratesOverview);
+            txt_ratesAverage = itemView.findViewById(R.id.txt_rateAverage);
+            txt_rateCount = itemView.findViewById(R.id.txt_rateCount);
+            gridLayout = itemView.findViewById(R.id.gridLayout);
+
+
         }
 
-        void setData(RatesOverview ratesOverview){
+        @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
+        void setData(RatesOverview ratesOverview) {
 
             txt_ratesTitle.setText(ratesOverview.getTitle());
             txt_ratesAverage.setText(ratesOverview.getRateAverage());
@@ -607,14 +615,12 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
 
             ArrayList<RatesOverview.RatesOverviewSection> ratesOverviewSections = ratesOverview.getRatesOverviewSections();
-            for(int i=0;i<ratesOverviewSections.size();i++){
-                EachRateOverviewSection eachRateOverviewSection=new EachRateOverviewSection(context);
-                eachRateOverviewSection.setTxt_progressNum(ratesOverviewSections.get(i).getTitle());
-                eachRateOverviewSection.setProgressBar(ratesOverviewSections.get(i).getPercent());
-                layout_sectionsHolder.addView(eachRateOverviewSection);
-
+            for (int i = 0; i < ratesOverviewSections.size(); i++) {
+                ProgressBar progressBar = RateOverviewSectionHelper.createProgressBar(context, ratesOverviewSections.get(i).getPercent(), i, 0);
+                gridLayout.addView(progressBar);
+                TextView progressTitle = RateOverviewSectionHelper.createProgressTitle(context, ratesOverviewSections.get(i).getTitle(), i, 1);
+                gridLayout.addView(progressTitle);
             }
-
 
         }
     }
