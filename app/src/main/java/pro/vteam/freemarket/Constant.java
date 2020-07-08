@@ -10,5 +10,6 @@ public class Constant {
     public static final int ITEM_OVERVIEW=5;
     public static final int DIVIDER=6;
     public static final int RATES_OVERVIEW=7;
+    public static final int COMMENT_VERTICAL_COLLECTION=8;
 
 }

@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.Constant;
+import pro.vteam.freemarket.models.CommentVerticalCollection;
 import pro.vteam.freemarket.models.Divider;
 import pro.vteam.freemarket.models.EachItemOverview;
 import pro.vteam.freemarket.R;
@@ -102,6 +103,11 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 View view = LayoutInflater.from(context).inflate(R.layout.model_rates_overview, parent, false);
                 return new RatesOverviewViewHolder(view);
             }
+
+            case Constant.COMMENT_VERTICAL_COLLECTION: {
+                View view = LayoutInflater.from(context).inflate(R.layout.model_comment_vertical_collection, parent, false);
+                return new CommentVerticalCollectionViewHolder(view);
+            }
             default:
                 View view = LayoutInflater.from(context).inflate(R.layout.model_unsuported_component, parent, false);
                 return new UnSupportedComponentViewHolder(view);
@@ -165,6 +171,12 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 RatesOverview ratesOverview = gson.fromJson(jsonRatesOverviewObject, RatesOverview.class);
                 ((RatesOverviewViewHolder) holder).setData(ratesOverview);
                 break;
+
+            case Constant.COMMENT_VERTICAL_COLLECTION:
+                String jsonCommentVerticalCollectionObject = gson.toJson(list.get(position).getObject());
+                CommentVerticalCollection commentVerticalCollection = gson.fromJson(jsonCommentVerticalCollectionObject, CommentVerticalCollection.class);
+                ((CommentVerticalCollectionViewHolder) holder).setData(commentVerticalCollection);
+                break;
             default:
                 ((UnSupportedComponentViewHolder) holder).txt_description.setText("این کامپوننت ساپورت نمی شود لطفا اپلیکیشن را آپدیت کنید.");
 
@@ -202,6 +214,9 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
             case "RatesOverview":
                 return Constant.RATES_OVERVIEW;
+
+            case "CommentVerticalCollection":
+                return Constant.COMMENT_VERTICAL_COLLECTION;
 
             default:
                 return Constant.UN_SUPPORTED_COMPONENT;
@@ -613,8 +628,10 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
             txt_ratesAverage.setText(ratesOverview.getRateAverage());
             txt_rateCount.setText(ratesOverview.getRateCount());
 
+            gridLayout.removeAllViews();
 
             ArrayList<RatesOverview.RatesOverviewSection> ratesOverviewSections = ratesOverview.getRatesOverviewSections();
+
             for (int i = 0; i < ratesOverviewSections.size(); i++) {
                 ProgressBar progressBar = RateOverviewSectionHelper.createProgressBar(context, ratesOverviewSections.get(i).getPercent(), i, 0);
                 gridLayout.addView(progressBar);
@@ -622,6 +639,22 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 gridLayout.addView(progressTitle);
             }
 
+        }
+    }
+
+    public class CommentVerticalCollectionViewHolder extends RecyclerView.ViewHolder{
+
+        RecyclerView comment_recycler;
+
+        public CommentVerticalCollectionViewHolder(@NonNull View itemView) {
+            super(itemView);
+            comment_recycler=itemView.findViewById(R.id.comment_recycler);
+        }
+
+        void setData(CommentVerticalCollection commentVerticalCollection){
+            CommentAdapter commentAdapter=new CommentAdapter(context,commentVerticalCollection.getComments());
+            comment_recycler.setLayoutManager(new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false));
+            comment_recycler.setAdapter(commentAdapter);
         }
     }
 
