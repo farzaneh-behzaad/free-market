@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.Constant;
+import pro.vteam.freemarket.helper.RateOverviewSectionHelper;
 import pro.vteam.freemarket.models.CommentVerticalCollection;
 import pro.vteam.freemarket.models.Divider;
 import pro.vteam.freemarket.models.EachItemOverview;
@@ -35,7 +36,6 @@ import pro.vteam.freemarket.R;
 import pro.vteam.freemarket.models.Banner;
 import pro.vteam.freemarket.models.BigPromotionBanner;
 import pro.vteam.freemarket.models.Component;
-import pro.vteam.freemarket.models.RateOverviewSectionHelper;
 import pro.vteam.freemarket.models.InlineAction;
 import pro.vteam.freemarket.models.Item;
 import pro.vteam.freemarket.models.ItemHeader;
