@@ -422,7 +422,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
                 itemsTitle.setVisibility(View.GONE);
                 txt_oneRowItemsInlineAction.setText(oneRowItems.getInlineAction().getTitle());
                 txt_oneRowItemsInlineAction.setTextColor(Color.parseColor(oneRowItems.getInlineAction().getTextColor()));
-                ConstraintLayout_title.setBackgroundColor(Color.GREEN);
+                ConstraintLayout_title.setBackgroundColor(Color.parseColor(oneRowItems.getInlineAction().getBackgroundColor()));
 
 
             } else if (oneRowItemsInlineAction == null) {
@@ -434,7 +434,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
 
             } else {
-                ConstraintLayout_title.setBackgroundColor(Color.GREEN);
+                ConstraintLayout_title.setBackgroundColor(Color.parseColor(oneRowItems.getInlineAction().getBackgroundColor()));
                 itemsTitle.setText(oneRowItems.getTitle());
                 txt_oneRowItemsInlineAction.setText(oneRowItems.getInlineAction().getTitle());
 
