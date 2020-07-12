@@ -6,47 +6,29 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
-
-import androidx.lifecycle.ViewModelProviders;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.material.tabs.TabLayout;
 
 import pro.vteam.freemarket.R;
-import pro.vteam.freemarket.adapter.CategoriesPagerAdapter;
 
-import pro.vteam.freemarket.databinding.FragmentCategoriesBinding;
 
 public class CategoriesFragment extends Fragment {
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        FragmentCategoriesBinding binding = DataBindingUtil.inflate(inflater, R.layout.fragment_categories, container, false);
-        View root = binding.getRoot();
+       View view= inflater.inflate( R.layout.fragment_categories, container, false);
 
 
-        TabLayout tabLayout = root.findViewById(R.id.tab_layout);
-        final ViewPager viewPager = root.findViewById(R.id.view_pager);
+
+        TabLayout tabLayout = view.findViewById(R.id.tab_layout);
+        final ViewPager viewPager = view.findViewById(R.id.view_pager);
 
         tabLayout.setLayoutDirection(View.LAYOUT_DIRECTION_LTR);
         tabLayout.setupWithViewPager(viewPager);
         viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
-
-        CategoriesTabViewModel viewModel = ViewModelProviders.of(this).get(CategoriesTabViewModel.class);
-        binding.setIsLoading(viewModel.isLoading);
-        binding.setIsFailed(viewModel.isFailed);
-        binding.included.setListener(viewModel);
-
-
-
-        viewModel.getObjectsList().observe(getViewLifecycleOwner(), categoriesLists -> {
-            CategoriesPagerAdapter adapter = new CategoriesPagerAdapter(getChildFragmentManager(), categoriesLists);
-            viewPager.setAdapter(adapter);
-            tabLayout.getTabAt(1).select();
-        });
 
 
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
@@ -69,7 +51,7 @@ public class CategoriesFragment extends Fragment {
         });
 
 
-        return root;
+        return view;
     }
 
 
