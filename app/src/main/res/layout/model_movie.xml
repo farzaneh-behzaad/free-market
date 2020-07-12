@@ -17,7 +17,7 @@
         android:tint="@color/colorAccent"
         />
 
-    <com.google.android.material.textview.MaterialTextView
+    <pro.vteam.freemarket.CostumeTextView
         android:id="@+id/movieName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,7 +27,7 @@
 
         />
 
-    <com.google.android.material.textview.MaterialTextView
+    <pro.vteam.freemarket.CostumeTextView
         android:id="@+id/itemPrice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

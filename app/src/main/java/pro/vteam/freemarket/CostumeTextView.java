@@ -6,18 +6,30 @@ import android.os.Build;
 import android.text.SpannableString;
 import android.text.SpannableStringBuilder;
 import android.text.style.TypefaceSpan;
+import android.util.AttributeSet;
 
+
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+import com.google.android.material.textview.MaterialTextView;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-public class CostumeTextView extends androidx.appcompat.widget.AppCompatTextView {
+public class CostumeTextView extends MaterialTextView {
     Typeface iconTypeFace;
 
-    public CostumeTextView(Context context) {
+    public CostumeTextView(@NonNull Context context, @Nullable AttributeSet attrs) {
+        super(context, attrs);
+        iconTypeFace = Typeface.createFromAsset(context.getAssets(), "free_market_font_icon.ttf");
+    }
+    public CostumeTextView(@NonNull Context context) {
         super(context);
         iconTypeFace = Typeface.createFromAsset(context.getAssets(), "free_market_font_icon.ttf");
     }
+
+
 
 
     @Override
@@ -45,9 +57,11 @@ public class CostumeTextView extends androidx.appcompat.widget.AppCompatTextView
                     ssb.setSpan(new TypefaceSpan(iconTypeFace), start, end, SpannableString.SPAN_INCLUSIVE_EXCLUSIVE);
                 }
             } else {
+
                 break;
             }
             super.setText(ssb, type);
         }
+        super.setText(ssb,type);
     }
 }

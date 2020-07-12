@@ -21,7 +21,7 @@
             android:background="?attr/selectableItemBackground"
             >
 
-            <com.google.android.material.textview.MaterialTextView
+            <pro.vteam.freemarket.CostumeTextView
                 android:id="@+id/txt_items_title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -33,7 +33,7 @@
                 android:layout_marginStart="@dimen/recycler_horizontal_margin"
                 android:textStyle="bold"/>
 
-            <com.google.android.material.textview.MaterialTextView
+            <pro.vteam.freemarket.CostumeTextView
                 android:id="@+id/txt_oneRowItemsInlineAction"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

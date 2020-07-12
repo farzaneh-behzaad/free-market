@@ -23,9 +23,9 @@
                 android:id="@+id/img_icon"
                 android:layout_width="32dp"
                 android:layout_height="32dp"
-                android:src="@drawable/ic_edit_black_24dp"            />
+                android:src="@drawable/ic_edit_black_24dp"/>
 
-            <com.google.android.material.textview.MaterialTextView
+            <pro.vteam.freemarket.CostumeTextView
                 android:id="@+id/txt_subject"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

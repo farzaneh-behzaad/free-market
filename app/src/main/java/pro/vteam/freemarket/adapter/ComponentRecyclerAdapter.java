@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import java.util.ArrayList;
 
 import pro.vteam.freemarket.Constant;
+import pro.vteam.freemarket.CostumeTextView;
 import pro.vteam.freemarket.helper.RateOverviewSectionHelper;
 import pro.vteam.freemarket.models.CommentVerticalCollection;
 import pro.vteam.freemarket.models.Divider;
@@ -234,7 +235,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
     public static class UnSupportedComponentViewHolder extends RecyclerView.ViewHolder {
 
-        TextView txt_description;
+        CostumeTextView txt_description;
 
         UnSupportedComponentViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -248,8 +249,8 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
         ImageView img_promotion_banner;
         ImageView img_promotion_icon;
-        TextView txt_promotion_name;
-        TextView txt_bigPromotionTag;
+        CostumeTextView txt_promotion_name;
+        CostumeTextView txt_bigPromotionTag;
         Button btn_inlineAction;
         ImageView img_bullet;
         LinearLayoutCompat bigPromotionTagLayout;
@@ -318,8 +319,8 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
     public class OneRowBannersViewHolder extends RecyclerView.ViewHolder {
 
-        TextView bannersTitle;
-        TextView inlineActionText;
+        CostumeTextView bannersTitle;
+        CostumeTextView inlineActionText;
         RecyclerView bannerRecycler;
         ImageView icon_oneRowBannersInlineAction;
         ConstraintLayout bannersTitleConstraintLayout;
@@ -388,8 +389,8 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
     public class OneRowItemsViewHolder extends RecyclerView.ViewHolder {
 
-        TextView itemsTitle;
-        TextView txt_oneRowItemsInlineAction;
+        CostumeTextView itemsTitle;
+        CostumeTextView txt_oneRowItemsInlineAction;
         ImageView icon_oneRowItemsInlineAction;
         RecyclerView itemsRecycler;
         CustomItemDecoration customItemDecoration;
@@ -456,8 +457,8 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
     public class LinkVerticalCollectionViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView linksTitle;
-        TextView txt_moreAction;
+        CostumeTextView linksTitle;
+        CostumeTextView txt_moreAction;
         RecyclerView linksRecycler;
 
         public LinkVerticalCollectionViewHolder(@NonNull View itemView) {
@@ -501,8 +502,8 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
 
         ImageView img_itemHeader;
         ImageView icon_itemHeader;
-        TextView txt_titleItemHeader;
-        TextView txt_companyItemHeader;
+        CostumeTextView txt_titleItemHeader;
+        CostumeTextView txt_companyItemHeader;
         Button btn_inlineActionItemHeader;
 
 
@@ -578,7 +579,7 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
         }
     }
 
-    public class DividerViewHolder extends RecyclerView.ViewHolder {
+    public static class  DividerViewHolder extends RecyclerView.ViewHolder {
 
         View dividerView;
 
@@ -605,9 +606,9 @@ public class ComponentRecyclerAdapter extends RecyclerView.Adapter<RecyclerView.
     public class RatesOverviewViewHolder extends RecyclerView.ViewHolder {
 
 
-        TextView txt_ratesTitle;
-        TextView txt_ratesAverage;
-        TextView txt_rateCount;
+        CostumeTextView txt_ratesTitle;
+        CostumeTextView txt_ratesAverage;
+        CostumeTextView txt_rateCount;
         GridLayout gridLayout;
 
         public RatesOverviewViewHolder(@NonNull View itemView) {

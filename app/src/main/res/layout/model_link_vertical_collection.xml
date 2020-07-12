@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <com.google.android.material.textview.MaterialTextView
+    <pro.vteam.freemarket.CostumeTextView
         android:id="@+id/title_links"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -26,7 +26,7 @@
         app:layout_constraintTop_toBottomOf="@id/title_links" />
 
 
-    <com.google.android.material.textview.MaterialTextView
+    <pro.vteam.freemarket.CostumeTextView
         android:id="@+id/txt_more_action"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
